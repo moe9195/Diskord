@@ -1,13 +1,10 @@
-import axios from "axios";
 import jwt_decode from "jwt-decode";
+
+import instance from "./instance";
 
 import {} from "./actionTypes";
 
 import { setErrors } from "./errors";
-
-const instance = axios.create({
-  baseURL: "https://api-chatr.herokuapp.com/"
-});
 
 export const checkForExpiredToken = () => {};
 

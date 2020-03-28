@@ -40,8 +40,8 @@ const AuthButton = ({ user }) => {
   return <ul className="navbar-nav ml-auto">{buttons}</ul>;
 };
 
-const mapStateToProps = state => ({
-  user: state.user
+const mapStateToProps = ({ user }) => ({
+  user
 });
 
 export default connect(mapStateToProps)(AuthButton);
