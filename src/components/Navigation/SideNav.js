@@ -52,7 +52,7 @@ class SideNav extends React.Component {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    channels: state.channels.channels
+    channels: state.channels
   };
 };
 export default connect(mapStateToProps)(SideNav);

@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
-import { addChannel } from "../redux/actions";
-import { Redirect, Link } from "react-router-dom";
+import { postChannel } from "../redux/actions";
+import { Link } from "react-router-dom";
 
 class AddChannelModal extends Component {
   state = {
@@ -20,11 +20,9 @@ class AddChannelModal extends Component {
   onSubmit = event => {
     console.log("here");
     event.preventDefault();
-    this.props.addChannel(this.state);
+    this.props.postChannel(this.state);
   };
-  clickHandle = () => {
-    return <Redirect to="/login" />;
-  };
+
   render() {
     return (
       <div>
@@ -116,7 +114,7 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    addChannel: channel => dispatch(addChannel(channel))
+    postChannel: channel => dispatch(postChannel(channel))
   };
 };
 
