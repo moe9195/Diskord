@@ -32,7 +32,7 @@ class RegistationForm extends Component {
     const { errors } = this.props;
     return (
       <div className="card col-6 mx-auto p-0 mt-5">
-        {this.props.user ? <Redirect to="/welcome" /> : <></>}
+        {this.props.user ? <Redirect to="/secret" /> : <></>}
         <div className="card-body">
           <h5 className="card-title mb-4">
             {type === "login"
