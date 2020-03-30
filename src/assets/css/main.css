@@ -524,12 +524,27 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
   color: #adb5bd;
 }
 
+.card {
+  background: #23272a !important;
+  text-align: center !important;
+}
+
+.card-title {
+  color: #99aab5 !important;
+}
+
 .modal-header {
+  text-align: center !important;
   color: #99aab5 !important;
   background: #23272a;
   border-bottom: solid !important;
   border-bottom-width: thin !important;
   border-bottom-color: #1f2223 !important;
+}
+
+.btn-link {
+  color: #99aab5 !important;
+  text-decoration: underline !important;
 }
 
 .form-control {
