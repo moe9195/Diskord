@@ -83,7 +83,7 @@ class AddChannelModal extends Component {
                       <div className="input-group-prepend"></div>
                       <input
                         type="url"
-                        placeholder="Add Channel..."
+                        placeholder="Add Channel Name..."
                         className="form-control"
                         name="image_url"
                         value={this.state.image_url}
@@ -93,6 +93,7 @@ class AddChannelModal extends Component {
                     <div className="modal-footer">
                       <button
                         type="button"
+                        placeholder="Add Image URL..."
                         className="btn btn-secondary"
                         data-dismiss="modal"
                         onClick={this.clearFields}
