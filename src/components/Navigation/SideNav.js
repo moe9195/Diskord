@@ -26,7 +26,16 @@ class SideNav extends React.Component {
           <li className="nav-item" data-toggle="tooltip" data-placement="right">
             <AddChannelModal />
           </li>
-          {this.props.user ? <div>{channelLinks}</div> : <></>}
+          {this.props.user ? (
+            <div
+              className="card text-left"
+              style={{ width: "15rem", border: "none" }}
+            >
+              {channelLinks}
+            </div>
+          ) : (
+            <></>
+          )}
         </ul>
         <ul className="navbar-nav sidenav-toggler">
           <li className="nav-item">
