@@ -7,12 +7,27 @@ body {
   overflow-x: hidden;
 }
 
+.message-text {
+  margin: 50px 50px 50px 50px;
+}
+
+.message-title {
+  margin: 50px 50px 50px 50px;
+}
+
 body.sticky-footer {
   margin-bottom: 56px;
 }
 
 body.sticky-footer .content-wrapper {
   min-height: calc(100vh - 56px - 56px);
+  background-color: #2c2f33;
+  border-top-style: solid;
+  border-top-color: #1f2223;
+  border-left-style: solid;
+  border-left-color: #1f2223;
+  border-width: thin;
+  color: #ffffff;
 }
 
 body.fixed-nav {
@@ -22,6 +37,7 @@ body.fixed-nav {
 .content-wrapper {
   min-height: calc(100vh - 56px);
   padding-top: 1rem;
+  background-color: #2c2f33;
 }
 
 .scroll-to-top {
@@ -33,7 +49,7 @@ body.fixed-nav {
   height: 50px;
   text-align: center;
   color: white;
-  background: rgba(52, 58, 64, 0.5);
+  background: #23272a;
   line-height: 45px;
 }
 
@@ -43,7 +59,7 @@ body.fixed-nav {
 }
 
 .scroll-to-top:hover {
-  background: #343a40;
+  background: #23272a;
 }
 
 .scroll-to-top i {
@@ -259,6 +275,10 @@ body.fixed-nav {
   display: none;
 }
 
+.fixed-top {
+  background: #23272a;
+}
+
 @media (min-width: 992px) {
   #mainNav.fixed-top .navbar-sidenav {
     height: calc(100vh - 112px);
@@ -283,7 +303,7 @@ body.fixed-nav {
 }
 
 #mainNav.fixed-top.navbar-dark .sidenav-toggler {
-  background-color: #212529;
+  background-color: #23272a;
 }
 
 #mainNav.fixed-top.navbar-dark .sidenav-toggler a i {
@@ -412,6 +432,10 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
   > .nav-link.heading {
   transition: all 0.2s ease-out;
   border-left: none;
+  border-top-style: solid;
+  border-top-color: #1f2223;
+  border-width: thin;
+
   color: #adb5bd;
   font-size: 1.2em;
 }
@@ -492,11 +516,11 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
 
 @media (min-width: 992px) {
   #mainNav.navbar-dark .navbar-collapse .navbar-sidenav {
-    background: #343a40;
+    background: #23272a;
   }
   #mainNav.navbar-dark .navbar-collapse .navbar-sidenav li.active a {
     color: white !important;
-    background-color: #495057;
+    background-color: #23272a;
   }
   #mainNav.navbar-dark .navbar-collapse .navbar-sidenav li.active a:focus,
   #mainNav.navbar-dark .navbar-collapse .navbar-sidenav li.active a:hover {
@@ -512,7 +536,7 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
     .navbar-sidenav
     > .nav-item
     .sidenav-third-level {
-    background: #343a40;
+    background: #23272a;
   }
 }
 
@@ -660,7 +684,7 @@ footer.sticky-footer {
   bottom: 0;
   width: 100%;
   height: 56px;
-  background-color: #e9ecef;
+  background-color: #2c2f33;
   line-height: 55px;
 }
 

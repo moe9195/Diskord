@@ -6,10 +6,7 @@ import SideNav from "./SideNav";
 import AuthButton from "./AuthButton";
 
 const NavBar = () => (
-  <nav
-    className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
-    id="mainNav"
-  >
+  <nav className="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <Link className="navbar-brand" to="/welcome">
       Chatr2.0
     </Link>
