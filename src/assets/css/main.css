@@ -277,6 +277,8 @@ body.fixed-nav {
 
 .fixed-top {
   background: #23272a;
+  border-bottom: solid;
+  border-bottom-color: #1f2223;
 }
 
 @media (min-width: 992px) {
@@ -524,6 +526,7 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
 .card {
   background: #23272a !important;
   text-align: center !important;
+  border-radius: 0.5rem !important;
 }
 
 .card-title {
@@ -537,6 +540,7 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
   border-bottom: solid !important;
   border-bottom-width: thin !important;
   border-bottom-color: #1f2223 !important;
+  top: none !important;
 }
 
 .btn-link {
@@ -554,6 +558,8 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
   color: #99aab5 !important;
   background: #2c2f33;
   border-style: hidden !important;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
 }
 
 .close {
@@ -570,6 +576,7 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
 
 .modal-content {
   background: #1f2223 !important;
+  border-radius: 0.5rem !important;
 }
 
 .input-group-text {
@@ -595,7 +602,7 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
     background: #23272a;
     border-top-style: solid;
     border-top-color: #1f2223;
-    border-width: thin;
+
     overflow: auto !important;
   }
   #mainNav.navbar-dark .navbar-collapse .navbar-sidenav li.active a {
