@@ -16,13 +16,13 @@ export const fetchChannels = () => async dispatch => {
 
 export const postChannel = channel => async dispatch => {
   try {
-    const res = await instance.post("/channels/", channel);
+    const res = await instance.post("/channels/create/", channel);
     const newChannel = res.data;
     dispatch({
       type: ADD_CHANNEL,
       payload: newChannel
     });
   } catch (error) {
-    console.error(error.response.data);
+    console.error(error);
   }
 };

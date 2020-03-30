@@ -6,8 +6,9 @@ const reducer = (state = initialState, action) => {
     case SET_CHANNELS:
       const channels = action.payload;
       return channels;
+
     case ADD_CHANNEL:
-      return [action.payload].concat(state.channels);
+      return [action.payload].concat(state);
     default:
       return state;
   }
