@@ -11,6 +11,7 @@ import {
 
 // Components
 import ChannelNavLink from "./ChannelNavLink";
+import AddChannelModal from "../AddChannelModal";
 
 class SideNav extends React.Component {
   state = { collapsed: false };
@@ -23,10 +24,7 @@ class SideNav extends React.Component {
       <div>
         <ul className="navbar-nav navbar-sidenav" id="exampleAccordion">
           <li className="nav-item" data-toggle="tooltip" data-placement="right">
-            <Link className="nav-link heading" to="/createChannel">
-              <span className="nav-link-text mr-2">Channels</span>
-              <FontAwesomeIcon icon={faPlusCircle} />
-            </Link>
+            <AddChannelModal />
           </li>
           {this.props.user ? <div>{channelLinks}</div> : <></>}
         </ul>
