@@ -445,7 +445,6 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
   border-top-style: solid;
   border-top-color: #1f2223;
   border-width: thin;
-
   color: #adb5bd;
   font-size: 1.2em;
 }
@@ -599,6 +598,7 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
     border-top-style: solid;
     border-top-color: #1f2223;
     border-width: thin;
+    overflow: auto !important;
   }
   #mainNav.navbar-dark .navbar-collapse .navbar-sidenav li.active a {
     color: white !important;
