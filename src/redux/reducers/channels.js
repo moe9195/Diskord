@@ -1,7 +1,7 @@
 import { ADD_CHANNEL } from "../actions/actionTypes";
 
 const initialState = {
-  channels: []
+  channels: [{ name: "Channel1" }]
 };
 const reducer = (state = initialState, action) => {
   switch (action.type) {
