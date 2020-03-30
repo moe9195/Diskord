@@ -7,22 +7,22 @@ import { Link } from "react-router-dom";
 
 class AddChannelModal extends Component {
   state = {
-    name: ""
+    name: "",
+    image_url: ""
   };
 
   onTextChange = event =>
     this.setState({ [event.target.name]: event.target.value });
 
   clearFields = () => {
-    let empty = { name: "" };
+    let empty = { name: "", image_url: "" };
     this.setState({ ...empty });
   };
   onSubmit = event => {
-    console.log("here");
     event.preventDefault();
     this.props.postChannel(this.state);
+    this.clearFields();
   };
-
   render() {
     return (
       <div>
@@ -79,9 +79,21 @@ class AddChannelModal extends Component {
                         onChange={this.onTextChange}
                       />
                     </div>
+                    <div className="input-group mb-3">
+                      <div className="input-group-prepend"></div>
+                      <input
+                        type="url"
+                        placeholder="Add Channel Name..."
+                        className="form-control"
+                        name="image_url"
+                        value={this.state.image_url}
+                        onChange={this.onTextChange}
+                      />
+                    </div>
                     <div className="modal-footer">
                       <button
                         type="button"
+                        placeholder="Add Image URL..."
                         className="btn btn-secondary"
                         data-dismiss="modal"
                         onClick={this.clearFields}
@@ -90,6 +102,7 @@ class AddChannelModal extends Component {
                       </button>
                       <button
                         type="submit"
+                        data-toggle="false"
                         value="Add Channel"
                         className="btn btn-primary"
                       >

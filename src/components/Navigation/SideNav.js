@@ -12,10 +12,15 @@ import {
 // Components
 import ChannelNavLink from "./ChannelNavLink";
 import AddChannelModal from "../AddChannelModal";
+import { fetchChannels } from "../../redux/actions";
 
 class SideNav extends React.Component {
   state = { collapsed: false };
-
+  componentDidMount = () => {
+    if (this.props.user) {
+      this.props.fetchChannels();
+    }
+  };
   render() {
     const channelLinks = this.props.channels.map(channel => (
       <ChannelNavLink key={channel.name} channel={channel} />
@@ -64,4 +69,9 @@ const mapStateToProps = state => {
     channels: state.channels
   };
 };
-export default connect(mapStateToProps)(SideNav);
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchChannels: () => dispatch(fetchChannels())
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(SideNav);
