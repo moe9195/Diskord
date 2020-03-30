@@ -21,6 +21,18 @@ export const setCurrentUser = token => {
   };
 };
 
+/*
+ *
+ * You can combine the login() and signup() actions into
+ * a single action that receives a type.
+ * This way you can simplify a lot of the code and remove
+ * some unnecessary logic.
+ *
+ * This would also simplify your code elsewhere a little.
+ * See RegistrationForm.js for more.
+ *
+ */
+
 export const login = userData => async dispatch => {
   try {
     const res = await instance.post("/login/", userData);

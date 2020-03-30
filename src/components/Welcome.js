@@ -1,7 +1,14 @@
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { resetErrors } from "../redux/actions";
+import { resetErrors } from "../redux/actions"; // <-- unnecessary import
+
+/*
+ *
+ * You don't need to check for user in the ternary
+ * operator around the Login link.
+ *
+ */
 
 const Welcome = ({ user }) => (
   <header className="masthead d-flex">

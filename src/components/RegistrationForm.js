@@ -16,6 +16,13 @@ class RegistationForm extends Component {
   handleChange = event =>
     this.setState({ [event.target.name]: event.target.value });
 
+  /*
+   *
+   * You can combine the two handleSubmit()s into one.
+   * See authentication.js action file for more on this.
+   *
+   */
+
   handleSubmitLogin = event => {
     event.preventDefault();
     this.props.login(this.state);
@@ -29,7 +36,7 @@ class RegistationForm extends Component {
   render() {
     const type = this.props.match.url.substring(1);
     const { username, password } = this.state;
-    const { errors } = this.props;
+    const { errors } = this.props; // You can use this here to also unwrap user and use it below.
     return (
       <div className="card col-6 mx-auto p-0 mt-5">
         {this.props.user ? <Redirect to="/secret" /> : <></>}
