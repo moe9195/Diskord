@@ -179,6 +179,8 @@ body.fixed-nav {
 @media (min-width: 992px) {
   #mainNav .navbar-brand {
     width: 250px;
+    color: #99aab5 !important;
+    font-weight: bold;
   }
   #mainNav .navbar-collapse {
     overflow: visible;
@@ -407,13 +409,21 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
   display: flex;
 }
 
+.nav-link {
+  color: #99aab5 !important;
+}
+
+.navbar-text {
+  color: #99aab5 !important;
+}
+
 #mainNav.navbar-dark .navbar-collapse .navbar-sidenav .nav-link-collapse:after {
-  color: #868e96;
+  color: #99aab5;
 }
 
 #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {
   transition: all 0.2s ease-out;
-  color: #868e96;
+  color: #99aab5;
 }
 
 #mainNav.navbar-dark
@@ -514,9 +524,66 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
   color: #adb5bd;
 }
 
+.modal-header {
+  color: #99aab5 !important;
+  background: #23272a;
+  border-bottom: solid !important;
+  border-bottom-width: thin !important;
+  border-bottom-color: #1f2223 !important;
+}
+
+.form-control {
+  background: #99aab5 !important;
+  border-color: #1f2223 !important;
+  border-radius: 0.25rem !important;
+}
+
+.modal-body {
+  color: #99aab5 !important;
+  background: #2c2f33;
+  border-style: hidden !important;
+}
+
+.close {
+  color: #99aab5 !important;
+  text-shadow: none !important;
+  opacity: 0.7 !important;
+}
+
+.modal-footer {
+  color: #99aab5 !important;
+  background: #2c2f33;
+  border-style: hidden !important;
+}
+
+.modal-content {
+  background: #1f2223 !important;
+}
+
+.input-group-text {
+  background-color: #99aab5 !important;
+  color: #23272a !important;
+  border: hidden !important;
+}
+
+.btn-primary {
+  color: #1f2223 !important;
+  background-color: #99aab5 !important;
+  border-color: #1f2223 !important;
+}
+
+.btn-secondary {
+  color: #1f2223 !important;
+  background-color: #99aab5 !important;
+  border-color: #1f2223 !important;
+}
+
 @media (min-width: 992px) {
   #mainNav.navbar-dark .navbar-collapse .navbar-sidenav {
     background: #23272a;
+    border-top-style: solid;
+    border-top-color: #1f2223;
+    border-width: thin;
   }
   #mainNav.navbar-dark .navbar-collapse .navbar-sidenav li.active a {
     color: white !important;

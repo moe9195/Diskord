@@ -71,11 +71,10 @@ class AddChannelModal extends Component {
                 <div className="modal-body">
                   <form onSubmit={this.onSubmit}>
                     <div className="input-group mb-3">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text">Channel Name</span>
-                      </div>
+                      <div className="input-group-prepend"></div>
                       <input
                         type="text"
+                        placeholder="Add Channel..."
                         className="form-control"
                         name="name"
                         value={this.state.name}
