@@ -14,7 +14,7 @@ class Chat extends Component {
     this.props.fetchMessages(this.state.channelID);
     this.interval = setInterval(
       () => this.props.fetchMessages(this.state.channelID),
-      2000
+      1500
     );
   }
 
@@ -25,7 +25,7 @@ class Chat extends Component {
       clearInterval(this.interval);
       this.interval = setInterval(
         () => this.props.fetchMessages(channelID),
-        2000
+        1500
       );
     }
   }

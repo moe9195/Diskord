@@ -13,8 +13,8 @@ import {
 
 const AuthButton = ({ user, logout, clearChannels, clearMessages }) => {
   const logoutAndClearChannels = () => {
-    clearChannels();
-    clearMessages();
+    // clearChannels();
+    // clearMessages();
     logout();
   };
 

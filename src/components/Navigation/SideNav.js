@@ -23,7 +23,7 @@ class SideNav extends React.Component {
   //   }
   // };
 
-  componentDidUpdate = () => {
+  componentDidMount = () => {
     if (this.state.loading) {
       this.setState({ loading: false });
       this.props.fetchChannels();
