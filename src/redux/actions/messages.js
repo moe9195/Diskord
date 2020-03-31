@@ -27,3 +27,10 @@ export const postMessage = (channelID, message) => async dispatch => {
     console.error(error);
   }
 };
+
+export const clearMessages = () => {
+  return {
+    type: SET_MESSAGES,
+    payload: []
+  };
+};

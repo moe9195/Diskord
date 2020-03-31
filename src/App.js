@@ -23,10 +23,8 @@ class App extends Component {
         <NavBar />
         <Switch>
           <Route path="/welcome" component={Welcome} />
-          <Route path="/secret" component={SuperSecretPage} />
           <Route path="/(login|signup)" component={RegistrationForm} />
-          <Route path="/private" component={SuperSecretPage} />
-          {/* <Redirect to={this.props.user ? "/secret" : "/welcome"} /> */}
+          <Route path="/secret" component={SuperSecretPage} />
           <Route path="/channels/:channelID" component={Chat} />
         </Switch>
         <Footer />

@@ -26,3 +26,10 @@ export const postChannel = channel => async dispatch => {
     console.error(error);
   }
 };
+
+export const clearChannels = () => {
+  return {
+    type: SET_CHANNELS,
+    payload: []
+  };
+};

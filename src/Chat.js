@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { fetchMessages, postMessage } from "./redux/actions";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 class Chat extends Component {
   state = {
@@ -11,6 +12,10 @@ class Chat extends Component {
 
   componentDidMount() {
     this.props.fetchMessages(this.state.channelID);
+    this.interval = setInterval(
+      () => this.props.fetchMessages(this.state.channelID),
+      2000
+    );
   }
 
   componentDidUpdate(prevProps) {
@@ -23,6 +28,10 @@ class Chat extends Component {
         2000
       );
     }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   clearForm = () => {
@@ -46,6 +55,9 @@ class Chat extends Component {
   };
 
   render() {
+    if (!this.props.user) {
+      return <Redirect to="/welcome" />;
+    }
     const messagesCards = this.props.messages.map(message => (
       <p>
         {message.username}: {message.message}

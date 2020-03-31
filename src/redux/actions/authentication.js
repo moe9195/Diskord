@@ -1,6 +1,6 @@
 import decode from "jwt-decode";
 import instance from "./instance";
-import { SET_ERRORS, SET_CURRENT_USER } from "./actionTypes";
+import { SET_ERRORS, SET_CURRENT_USER, SET_CHANNELS } from "./actionTypes";
 import { fetchChannels } from "./channels";
 
 export const setAuthToken = token => {
@@ -26,6 +26,7 @@ export const login = userData => async dispatch => {
   try {
     const res = await instance.post("/login/", userData);
     const { token } = res.data;
+    //dispatch(fetchChannels());
     dispatch(setCurrentUser(token));
   } catch (error) {
     console.log(error.response.data);
@@ -51,7 +52,9 @@ export const signup = userData => async dispatch => {
   }
 };
 
-export const logout = () => setCurrentUser();
+export const logout = () => {
+  return setCurrentUser();
+};
 
 export const checkForExpiredToken = () => {
   const token = localStorage.getItem("token");

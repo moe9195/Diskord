@@ -15,16 +15,26 @@ import AddChannelModal from "../AddChannelModal";
 import { fetchChannels } from "../../redux/actions";
 
 class SideNav extends React.Component {
-  state = { collapsed: false };
-  componentDidMount = () => {
-    if (this.props.user) {
+  state = { collapsed: false, loading: true };
+
+  // componentDidMount = () => {
+  //   if (this.props.user) {
+  //     this.props.fetchChannels();
+  //   }
+  // };
+
+  componentDidUpdate = () => {
+    if (this.state.loading) {
+      this.setState({ loading: false });
       this.props.fetchChannels();
     }
   };
+
   render() {
     const channelLinks = this.props.channels.map(channel => (
       <ChannelNavLink key={channel.id} channel={channel} />
     ));
+
     return (
       <div>
         <ul className="navbar-nav navbar-sidenav" id="exampleAccordion">

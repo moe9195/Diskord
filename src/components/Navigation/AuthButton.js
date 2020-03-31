@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { logout } from "../../redux/actions";
+import { logout, clearChannels, clearMessages } from "../../redux/actions";
 
 // Fontawesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,7 +11,13 @@ import {
   faUserPlus
 } from "@fortawesome/free-solid-svg-icons";
 
-const AuthButton = ({ user, logout }) => {
+const AuthButton = ({ user, logout, clearChannels, clearMessages }) => {
+  const logoutAndClearChannels = () => {
+    clearChannels();
+    clearMessages();
+    logout();
+  };
+
   let buttons = [
     <li key="loginButton" className="nav-item">
       <Link to="/login" className="nav-link">
@@ -30,7 +36,7 @@ const AuthButton = ({ user, logout }) => {
       <>
         <span className="navbar-text">{user.username}</span>
         <li className="nav-item">
-          <span className="nav-link" onClick={logout}>
+          <span className="nav-link" onClick={logoutAndClearChannels}>
             <FontAwesomeIcon icon={faSignOutAlt} /> Logout
           </span>
         </li>
@@ -47,7 +53,9 @@ const mapStateToProps = ({ user }) => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    logout: () => dispatch(logout())
+    logout: () => dispatch(logout()),
+    clearChannels: () => dispatch(clearChannels()),
+    clearMessages: () => dispatch(clearMessages())
   };
 };
 
