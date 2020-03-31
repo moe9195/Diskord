@@ -7,7 +7,7 @@ export default (state = initialState, { type, payload }) => {
     case SET_MESSAGES:
       return payload;
     case SEND_MESSAGE:
-      return [payload].concat(state);
+      return state.concat(payload);
 
     default:
       return state;

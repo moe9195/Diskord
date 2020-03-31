@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 
 const SuperSecretPage = ({ user }) => {
   if (!user) return <Redirect to="/login" />;
-
   return (
     <div>
       <h1 className="message-title">this page has all the secrets</h1>

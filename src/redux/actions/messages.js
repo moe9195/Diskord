@@ -3,7 +3,7 @@ import instance from "./instance";
 
 export const fetchMessages = channelID => async dispatch => {
   try {
-    const res = await instance.get(`/channels/${channelID}`);
+    const res = await instance.get(`channels/${channelID}`);
     const messages = res.data;
     dispatch({
       type: SET_MESSAGES,
@@ -14,10 +14,11 @@ export const fetchMessages = channelID => async dispatch => {
   }
 };
 
-export const postMessage = (message, channelID) => async dispatch => {
+export const postMessage = (channelID, message) => async dispatch => {
   try {
     const res = await instance.post(`channels/${channelID}/send/`, message);
     const newMessage = res.data;
+    console.log(newMessage);
     dispatch({
       type: SEND_MESSAGE,
       payload: newMessage

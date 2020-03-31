@@ -27,7 +27,7 @@ class App extends Component {
           <Route path="/(login|signup)" component={RegistrationForm} />
           <Route path="/private" component={SuperSecretPage} />
           {/* <Redirect to={this.props.user ? "/secret" : "/welcome"} /> */}
-          <Chat />
+          <Route path="/channels/:channelID" component={Chat} />
         </Switch>
         <Footer />
       </div>
