@@ -8,6 +8,7 @@ import registerServiceWorker from "./registerServiceWorker";
 import "./assets/css/main.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
+import "./assets/css/chat.css";
 
 // Components
 import App from "./App";

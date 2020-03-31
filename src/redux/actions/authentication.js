@@ -2,6 +2,7 @@ import decode from "jwt-decode";
 import instance from "./instance";
 import { SET_ERRORS, SET_CURRENT_USER } from "./actionTypes";
 import { fetchChannels } from "./channels";
+
 export const setAuthToken = token => {
   if (token) {
     localStorage.setItem("token", token);
@@ -26,7 +27,6 @@ export const login = userData => async dispatch => {
     const res = await instance.post("/login/", userData);
     const { token } = res.data;
     dispatch(setCurrentUser(token));
-    dispatch(fetchChannels());
   } catch (error) {
     console.log(error.response.data);
     dispatch({

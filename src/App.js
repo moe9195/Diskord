@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import Welcome from "./components/Welcome";
 import RegistrationForm from "./components/RegistrationForm";
 import SuperSecretPage from "./components/SuperSecretPage";
+import Chat from "./Chat";
 
 class App extends Component {
   componentDidMount() {
@@ -25,7 +26,8 @@ class App extends Component {
           <Route path="/secret" component={SuperSecretPage} />
           <Route path="/(login|signup)" component={RegistrationForm} />
           <Route path="/private" component={SuperSecretPage} />
-          <Redirect to={this.props.user ? "/secret" : "/welcome"} />
+          {/* <Redirect to={this.props.user ? "/secret" : "/welcome"} /> */}
+          <Chat />
         </Switch>
         <Footer />
       </div>
