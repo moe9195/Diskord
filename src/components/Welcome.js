@@ -3,6 +3,12 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { resetErrors } from "../redux/actions";
 
+/*
+ * {user ? <Redirect to="/secret" /> : <></>}
+ * can be shortened to...
+ * {user && <Redirect to="/secret" />}
+ */
+
 const Welcome = ({ user }) => (
   <header className="masthead d-flex">
     {user ? <Redirect to="/secret" /> : <></>}

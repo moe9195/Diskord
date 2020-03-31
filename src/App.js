@@ -10,7 +10,17 @@ import Footer from "./components/Footer";
 import Welcome from "./components/Welcome";
 import RegistrationForm from "./components/RegistrationForm";
 import SuperSecretPage from "./components/SuperSecretPage";
-import Chat from "./Chat";
+import Chat from "./Chat"; // Component file should be moved into the components/ directory.
+
+/*
+ *
+ * More. Meaningful. Descriptive. Commit message, please.
+ * It helps to have atomic commits.
+ * Make your commits smaller and more focused,
+ * that helps discipline your mind when thinking of developing
+ * this app, and structures your work.
+ *
+ */
 
 class App extends Component {
   componentDidMount() {
