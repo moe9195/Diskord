@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 class Chat extends Component {
   state = {
-    messages: { message: "help" },
+    messages: { message: "" },
     channelID: this.props.match.params.channelID,
     refresh: true
   };
@@ -17,18 +17,24 @@ class Chat extends Component {
     const channelID = this.props.match.params.channelID;
     if (prevProps.match.params.channelID !== channelID) {
       this.props.fetchMessages(channelID);
-      //clearInterval(this.interval);
-      //   this.interval = setInterval(
-      //     () => this.props.fetchMessages(channelID),
-      //     2000
-      //   );
+      clearInterval(this.interval);
+      this.interval = setInterval(
+        () => this.props.fetchMessages(channelID),
+        2000
+      );
     }
-
-    //
   }
 
+  clearForm = () => {
+    this.setState({ messages: { message: "" } });
+  };
+
   handleChange = event =>
-    this.setState({ messages: { message: event.target.value } });
+    this.setState({
+      messages: {
+        message: event.target.value
+      }
+    });
 
   onSubmit = event => {
     event.preventDefault();
@@ -36,17 +42,10 @@ class Chat extends Component {
       this.props.match.params.channelID,
       this.state.messages
     );
-    // this.props.fetchMessages(this.props.match.params.channelID);
+    this.clearForm();
   };
 
   render() {
-    // if (this.state.channelID !== this.props.match.params.channelID) {
-    //   this.setState({
-    //     channelID: this.props.match.params.channelID
-    //   });
-    //   this.props.fetchMessages(this.props.match.params.channelID);
-    // }
-
     const messagesCards = this.props.messages.map(message => (
       <p>
         {message.username}: {message.message}
@@ -65,7 +64,7 @@ class Chat extends Component {
               placeholder="Message..."
               className="form-control"
               name="message"
-              value={this.state.message}
+              value={this.state.messages.message}
               onChange={this.handleChange}
             />
             <button
