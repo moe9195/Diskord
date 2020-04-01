@@ -15,7 +15,10 @@ export const setAuthToken = token => {
 
 export const setCurrentUser = token => {
   setAuthToken(token);
-  const user = token ? decode(token) : null;
+  let user = null;
+  if (token) {
+    user = decode(token);
+  }
   return {
     type: SET_CURRENT_USER,
     payload: user
@@ -26,10 +29,10 @@ export const login = userData => async dispatch => {
   try {
     const res = await instance.post("/login/", userData);
     const { token } = res.data;
-    //dispatch(fetchChannels());
     dispatch(setCurrentUser(token));
+    dispatch(fetchChannels());
   } catch (error) {
-    console.log(error.response.data);
+    console.error(error);
     dispatch({
       type: SET_ERRORS,
       payload: error.response.data
@@ -42,6 +45,7 @@ export const signup = userData => async dispatch => {
     const res = await instance.post("/signup/", userData);
     const { token } = res.data;
     dispatch(setCurrentUser(token));
+    dispatch(fetchChannels());
   } catch (error) {
     console.error(error);
     console.log(error.response.data);
