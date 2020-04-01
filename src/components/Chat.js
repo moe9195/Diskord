@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { fetchMessages, postMessage } from "./redux/actions";
+import { fetchMessages, postMessage } from "../redux/actions";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 

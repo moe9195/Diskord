@@ -10,7 +10,7 @@ import Footer from "./components/Footer";
 import Welcome from "./components/Welcome";
 import RegistrationForm from "./components/RegistrationForm";
 import SuperSecretPage from "./components/SuperSecretPage";
-import Chat from "./Chat";
+import Chat from "./components/Chat";
 
 class App extends Component {
   componentDidMount() {
