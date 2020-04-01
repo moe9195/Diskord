@@ -5,8 +5,8 @@ import { Redirect } from "react-router-dom";
 import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import messages from "../redux/reducers/messages";
 import { faPaperPlane, faGrin } from "@fortawesome/free-solid-svg-icons";
-
 class Chat extends Component {
   state = {
     messages: { message: "" },
@@ -14,14 +14,13 @@ class Chat extends Component {
     refresh: true,
     showEmojis: false
   };
-
+  //LIFECYCLE
   componentDidMount() {
     this.props.fetchMessages(this.state.channelID);
     this.interval = setInterval(
       () => this.props.fetchMessages(this.state.channelID),
       5000
     );
-    // this.scrollToBottom();
   }
 
   componentDidUpdate(prevProps) {
@@ -40,11 +39,9 @@ class Chat extends Component {
   componentWillUnmount() {
     clearInterval(this.interval);
   }
-
   scrollToBottom = () => {
     this.messagesEnd.scrollIntoView({ behavior: "auto" });
   };
-
   showEmojis = e => {
     this.setState(
       {
@@ -91,15 +88,46 @@ class Chat extends Component {
       messages: { message: this.state.messages.message + emoji }
     });
   };
+  validURL = str => {
+    var pattern = new RegExp(
+      "^(https?:\\/\\/)?" + // protocol
+      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+      "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+      "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+        "(\\#[-a-z\\d_]*)?$",
+      "i"
+    ); // fragment locator
+    return !!pattern.test(str);
+  };
+  checkImageURL(url) {
+    return url.match(/.(jpeg|jpg|gif|png)$/) != null;
+  }
   render() {
     if (!this.props.user) {
       return <Redirect to="/welcome" />;
     }
-    const messagesCards = this.props.messages.map(message => (
-      <div className="message-text">
-        {message.username}: {message.message}
-      </div>
-    ));
+    const messagesCards = this.props.messages.map(message => {
+      console.log(message.message);
+      if (this.validURL(message.message)) {
+        if (this.checkImageURL(message.message)) {
+          return (
+            <div>
+              <p>{message.username}: </p>
+              <img src={`${message.message}`} alt="image" />
+            </div>
+          );
+        }
+      }
+      return (
+        <div>
+          {console.log(message.message)}
+          <p>
+            {message.username}: {message.message}
+          </p>
+        </div>
+      );
+    });
 
     return (
       <div className="container chatholder">
