@@ -5,7 +5,7 @@ import { getCurrentChannel } from "../../redux/actions";
 import ReactImageFallback from "react-image-fallback";
 
 class ChannelNavLink extends Component {
-  state = { clicked: false };
+  state = { clicked: false }; // this isn't being used anywhere
 
   currentChannel = () => {
     this.props.getCurrentChannel(this.props.channel);
@@ -13,6 +13,7 @@ class ChannelNavLink extends Component {
   };
 
   render() {
+    // you can use the {condition && statement} syntax in the styles below
     return (
       <div>
         <li
