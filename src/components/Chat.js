@@ -52,7 +52,6 @@ class Chat extends Component {
   };
 
   closeMenu = e => {
-    console.log(this.emojiPicker);
     if (this.emojiPicker !== null && !this.emojiPicker.contains(e.target)) {
       this.setState(
         {
@@ -82,23 +81,18 @@ class Chat extends Component {
     this.clearForm();
   };
   addEmoji = e => {
-    // console.log(e.native);
     let emoji = e.native;
     this.setState({
       messages: { message: this.state.messages.message + emoji }
     });
   };
-  validURL = str => {
-    var pattern = new RegExp(
-      "^(https?:\\/\\/)?" + // protocol
-      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
-      "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
-      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
-      "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
-        "(\\#[-a-z\\d_]*)?$",
-      "i"
-    ); // fragment locator
-    return !!pattern.test(str);
+  validURL = string => {
+    try {
+      new URL(string);
+    } catch (_) {
+      return false;
+    }
+    return true;
   };
   checkImageURL(url) {
     return url.match(/.(jpeg|jpg|gif|png)$/) != null;
@@ -108,32 +102,52 @@ class Chat extends Component {
       return <Redirect to="/welcome" />;
     }
     const messagesCards = this.props.messages.map(message => {
-      console.log(message.message);
       if (this.validURL(message.message)) {
         if (this.checkImageURL(message.message)) {
           return (
             <div>
-              <p>{message.username}: </p>
-              <img
-                src={`${message.message}`}
-                style={{
-                  borderRadius: "5%",
-                  width: "300px",
-                  height: "300px",
-                  overflow: "hidden"
-                }}
-                alt="image"
-              />
+              <div className="yours messages">
+                <p className="message">{message.username}: </p>
+              </div>
+              <img src={`${message.message}`} alt="image" />
+              <br />
+              <br />
             </div>
           );
         }
       }
       return (
         <div>
-          {console.log(message.message)}
-          <p>
-            {message.username}: {message.message}
-          </p>
+          {this.props.user.username !== message.username ? (
+            <div className="yours messages">
+              <div className="message">
+                <div style={{ fontSize: 16, color: "#7289DA" }}>
+                  {message.username}
+                </div>
+                <div style={{ fontSize: 13 }}> {message.message}</div>
+              </div>
+            </div>
+          ) : (
+            <div
+              className="mine messages"
+              style={{
+                padding: "8px 15px",
+                marginTop: "0px",
+                marginBottom: "0px"
+              }}
+            >
+              <div
+                className="message"
+                style={{
+                  padding: "8px 15px",
+                  marginTop: "0px",
+                  marginBottom: "0px"
+                }}
+              >
+                <div style={{ fontSize: 13 }}> {message.message}</div>
+              </div>
+            </div>
+          )}
         </div>
       );
     });
@@ -152,9 +166,9 @@ class Chat extends Component {
         </div>
         <div className="chat-box-margin"></div>
         <form onSubmit={this.onSubmit}>
-          <div class="right-inner-addon">
+          <div className="right-inner-addon">
             <div className="input-group mb-3">
-              <div class="input-group-prepend">
+              <div className="input-group-prepend">
                 {this.state.showEmojis ? (
                   <span
                     style={styles.emojiPicker}
