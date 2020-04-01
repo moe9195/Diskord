@@ -840,3 +840,13 @@ footer.sticky-footer {
 .emoji-button {
   border-right-style: hidden !important;
 }
+
+.message-text {
+  word-wrap: break-word;
+}
+
+/* images */
+
+.channel-img {
+  border-radius: 50%;
+}

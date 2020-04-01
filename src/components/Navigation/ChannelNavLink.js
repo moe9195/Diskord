@@ -34,8 +34,21 @@ class ChannelNavLink extends Component {
             className="nav-link"
             to={`/channels/${this.props.channel.id}`}
           >
-            <FontAwesomeIcon icon={faHashtag} />
-            <span className="nav-link-text">{this.props.channel.name}</span>
+            <img
+              style={{
+                borderRadius: "50%",
+                width: "30px",
+                height: "30px",
+                overflow: "hidden"
+              }}
+              src={this.props.channel.image_url}
+              alt={this.props.channel.name}
+              onerror="this.src='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823__340.jpg'"
+            />
+
+            <span className="nav-link-text">
+              &nbsp;{this.props.channel.name}
+            </span>
           </NavLink>
         </li>
       </div>
