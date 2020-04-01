@@ -96,9 +96,9 @@ class Chat extends Component {
       return <Redirect to="/welcome" />;
     }
     const messagesCards = this.props.messages.map(message => (
-      <p>
+      <div className="message-text">
         {message.username}: {message.message}
-      </p>
+      </div>
     ));
 
     return (
