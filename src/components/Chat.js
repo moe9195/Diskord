@@ -4,6 +4,9 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane, faGrin } from "@fortawesome/free-solid-svg-icons";
+
 class Chat extends Component {
   state = {
     messages: { message: "" },
@@ -16,8 +19,9 @@ class Chat extends Component {
     this.props.fetchMessages(this.state.channelID);
     this.interval = setInterval(
       () => this.props.fetchMessages(this.state.channelID),
-      1500
+      5000
     );
+    // this.scrollToBottom();
   }
 
   componentDidUpdate(prevProps) {
@@ -27,14 +31,20 @@ class Chat extends Component {
       clearInterval(this.interval);
       this.interval = setInterval(
         () => this.props.fetchMessages(channelID),
-        1500
+        5000
       );
     }
+    this.scrollToBottom();
   }
 
   componentWillUnmount() {
     clearInterval(this.interval);
   }
+
+  scrollToBottom = () => {
+    this.messagesEnd.scrollIntoView({ behavior: "auto" });
+  };
+
   showEmojis = e => {
     this.setState(
       {
@@ -92,44 +102,89 @@ class Chat extends Component {
     ));
 
     return (
-      <div className="container">
-        {messagesCards}
+      <div className="container chatholder">
+        <div className="container chatbox">
+          <p>hello: hello</p>
+          <p>hello: hello</p>
+          <p>hello: hello</p>
+          <p>hello: hello</p>
+          <p>hello: hello</p>
+          <p>hello: hello</p>
+          <p>hello: hello</p>
+          <p>hello: hello</p>
+          <p>hello: hello</p>
+          <p>hello: hello</p>
+          <p>hello: hello</p>
+          <p>hello: hello</p>
+          <p>hello: hello</p>
+          <p>hello: hello</p>
+          <p>hello: hello</p>
+          <p>hello: hello</p>
+          <p>hello: hello</p>
+          <p>hello: hello</p>
+          <p>hello: hello</p>
+          <p>hello: hello</p>
+          <p>hello: hello</p>
+          <p>hello: hello</p>
+          <p>hello: hello</p>
+          <p>hello: hello</p>
 
+          {messagesCards}
+          <div
+            style={{ float: "left", clear: "both" }}
+            ref={el => {
+              this.messagesEnd = el;
+            }}
+          ></div>
+        </div>
+        <div className="chat-box-margin"></div>
         <form onSubmit={this.onSubmit}>
-          <div className="input-group mb-3">
-            <div className="input-group-prepend"></div>
-            <input
-              type="text"
-              placeholder="Message..."
-              className="form-control"
-              name="message"
-              value={this.state.messages.message}
-              onChange={this.handleChange}
-            />
-            {this.state.showEmojis ? (
-              <span
-                style={styles.emojiPicker}
-                ref={el => (this.emojiPicker = el)}
-              >
-                <Picker
-                  onSelect={this.addEmoji}
-                  emojiTooltip={true}
-                  title="weChat"
-                />
-              </span>
-            ) : (
-              <p style={styles.getEmojiButton} onClick={this.showEmojis}>
-                {String.fromCodePoint(0x1f60a)}
-              </p>
-            )}
-            <button
-              type="submit"
-              data-toggle="false"
-              value="message"
-              className="btn btn-primary"
-            >
-              Submit
-            </button>
+          <div class="right-inner-addon">
+            <div className="input-group mb-3">
+              <div class="input-group-prepend">
+                {this.state.showEmojis ? (
+                  <span
+                    style={styles.emojiPicker}
+                    ref={el => (this.emojiPicker = el)}
+                  >
+                    <Picker
+                      onSelect={this.addEmoji}
+                      emojiTooltip={true}
+                      theme="dark"
+                      title=" "
+                    />
+                  </span>
+                ) : (
+                  <></>
+                )}
+                <div
+                  className="btn btn-primary emoji-button"
+                  onClick={this.showEmojis}
+                >
+                  <FontAwesomeIcon icon={faGrin} />
+                </div>
+              </div>
+
+              <input
+                type="text"
+                placeholder="Message..."
+                className="form-control chat-box-borders"
+                name="message"
+                value={this.state.messages.message}
+                onChange={this.handleChange}
+              />
+              <div className="input-group-append">
+                <button
+                  type="submit"
+                  data-toggle="false"
+                  value="message"
+                  className="btn btn-primary send-button"
+                >
+                  {" "}
+                  <FontAwesomeIcon icon={faPaperPlane} />
+                </button>
+              </div>
+            </div>
           </div>
         </form>
       </div>
@@ -179,10 +234,11 @@ const styles = {
   },
   emojiPicker: {
     position: "absolute",
-    bottom: 10,
-    right: 0,
-    cssFloat: "right",
-    marginLeft: "200px"
+    bottom: 30,
+    right: 10,
+    cssFloat: "left",
+    marginLeft: "200px",
+    color: "black"
   }
 };
 

@@ -3,7 +3,7 @@ import instance from "./instance";
 
 export const fetchMessages = channelID => async dispatch => {
   try {
-    const res = await instance.get(`channels/${channelID}`);
+    const res = await instance.get(`channels/${channelID}/`);
     const messages = res.data;
     dispatch({
       type: SET_MESSAGES,
