@@ -124,9 +124,17 @@ class Chat extends Component {
     });
 
     return (
-      <div className="container">
-        {messagesCards}
-
+      <div className="container chatholder">
+        <div className="container chatbox">
+          {messagesCards}
+          <div
+            style={{ float: "left", clear: "both" }}
+            ref={el => {
+              this.messagesEnd = el;
+            }}
+          ></div>
+        </div>
+        <div className="chat-box-margin"></div>
         <form onSubmit={this.onSubmit}>
           <div className="input-group mb-3">
             <div className="input-group-prepend"></div>
