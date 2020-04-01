@@ -104,31 +104,6 @@ class Chat extends Component {
     return (
       <div className="container chatholder">
         <div className="container chatbox">
-          <p>hello: hello</p>
-          <p>hello: hello</p>
-          <p>hello: hello</p>
-          <p>hello: hello</p>
-          <p>hello: hello</p>
-          <p>hello: hello</p>
-          <p>hello: hello</p>
-          <p>hello: hello</p>
-          <p>hello: hello</p>
-          <p>hello: hello</p>
-          <p>hello: hello</p>
-          <p>hello: hello</p>
-          <p>hello: hello</p>
-          <p>hello: hello</p>
-          <p>hello: hello</p>
-          <p>hello: hello</p>
-          <p>hello: hello</p>
-          <p>hello: hello</p>
-          <p>hello: hello</p>
-          <p>hello: hello</p>
-          <p>hello: hello</p>
-          <p>hello: hello</p>
-          <p>hello: hello</p>
-          <p>hello: hello</p>
-
           {messagesCards}
           <div
             style={{ float: "left", clear: "both" }}
