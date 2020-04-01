@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHashtag } from "@fortawesome/free-solid-svg-icons";
 
 class ChannelNavLink extends Component {
-  state = { clicked: false };
+  state = { clicked: false }; // this isn't being used anywhere
 
   currentChannel = () => {
     this.props.getCurrentChannel(this.props.channel);
@@ -16,6 +16,7 @@ class ChannelNavLink extends Component {
   };
 
   render() {
+    // you can use the {condition && statement} syntax in the styles below
     return (
       <div>
         <li
