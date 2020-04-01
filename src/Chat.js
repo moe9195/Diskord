@@ -5,6 +5,13 @@ import { Redirect } from "react-router-dom";
 
 class Chat extends Component {
   state = {
+    /*
+     * "messages" key should really be renamed to "message"
+     * Also, what would you have to change in the code if you
+     * changes messages from { message: "" } to "" ?
+     * Wouldn't that be cleaner?
+     * Food for thought... Please eat it.
+     */
     messages: { message: "" },
     channelID: this.props.match.params.channelID,
     refresh: true
