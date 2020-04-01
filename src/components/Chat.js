@@ -114,7 +114,16 @@ class Chat extends Component {
           return (
             <div>
               <p>{message.username}: </p>
-              <img src={`${message.message}`} alt="image" />
+              <img
+                src={`${message.message}`}
+                style={{
+                  borderRadius: "5%",
+                  width: "300px",
+                  height: "300px",
+                  overflow: "hidden"
+                }}
+                alt="image"
+              />
             </div>
           );
         }
