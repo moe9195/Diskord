@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import { fetchMessages, postMessage } from "../redux/actions";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-
+import "emoji-mart/css/emoji-mart.css";
+import { Picker } from "emoji-mart";
 class Chat extends Component {
   state = {
     messages: { message: "" },
     channelID: this.props.match.params.channelID,
-    refresh: true
+    refresh: true,
+    showEmojis: false
   };
 
   componentDidMount() {
@@ -33,7 +35,26 @@ class Chat extends Component {
   componentWillUnmount() {
     clearInterval(this.interval);
   }
+  showEmojis = e => {
+    this.setState(
+      {
+        showEmojis: true
+      },
+      () => document.addEventListener("click", this.closeMenu)
+    );
+  };
 
+  closeMenu = e => {
+    console.log(this.emojiPicker);
+    if (this.emojiPicker !== null && !this.emojiPicker.contains(e.target)) {
+      this.setState(
+        {
+          showEmojis: false
+        },
+        () => document.removeEventListener("click", this.closeMenu)
+      );
+    }
+  };
   clearForm = () => {
     this.setState({ messages: { message: "" } });
   };
@@ -53,7 +74,13 @@ class Chat extends Component {
     );
     this.clearForm();
   };
-
+  addEmoji = e => {
+    // console.log(e.native);
+    let emoji = e.native;
+    this.setState({
+      messages: { message: this.state.messages.message + emoji }
+    });
+  };
   render() {
     if (!this.props.user) {
       return <Redirect to="/welcome" />;
@@ -79,6 +106,22 @@ class Chat extends Component {
               value={this.state.messages.message}
               onChange={this.handleChange}
             />
+            {this.state.showEmojis ? (
+              <span
+                style={styles.emojiPicker}
+                ref={el => (this.emojiPicker = el)}
+              >
+                <Picker
+                  onSelect={this.addEmoji}
+                  emojiTooltip={true}
+                  title="weChat"
+                />
+              </span>
+            ) : (
+              <p style={styles.getEmojiButton} onClick={this.showEmojis}>
+                {String.fromCodePoint(0x1f60a)}
+              </p>
+            )}
             <button
               type="submit"
               data-toggle="false"
@@ -110,3 +153,46 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Chat);
+
+const styles = {
+  container: {
+    padding: 20,
+    borderTop: "1px #4C758F solid",
+    marginBottom: 20
+  },
+  form: {
+    display: "flex"
+  },
+  input: {
+    color: "inherit",
+    background: "none",
+    outline: "none",
+    border: "none",
+    flex: 1,
+    fontSize: 16
+  },
+  getEmojiButton: {
+    cssFloat: "right",
+    border: "none",
+    margin: 0,
+    cursor: "pointer"
+  },
+  emojiPicker: {
+    position: "absolute",
+    bottom: 10,
+    right: 0,
+    cssFloat: "right",
+    marginLeft: "200px"
+  }
+};
+
+const customEmojis = [
+  {
+    name: "Octocat",
+    short_names: ["octocat"],
+    text: "",
+    emoticons: [],
+    keywords: ["github"],
+    imageUrl: "https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7"
+  }
+];
