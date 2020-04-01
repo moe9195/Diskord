@@ -12,7 +12,7 @@ class Chat extends Component {
     refresh: true,
     showEmojis: false
   };
-
+  //LIFECYCLE
   componentDidMount() {
     this.props.fetchMessages(this.state.channelID);
     this.interval = setInterval(
