@@ -32,13 +32,13 @@ class AddChannelModal extends Component {
             data-toggle="modal"
             data-target="#staticBackdrop"
           >
-            <span className="nav-link-text mr-2">&nbsp;&nbsp;Channels</span>
-            <FontAwesomeIcon icon={faPlusCircle} />
+            <FontAwesomeIcon icon={faPlusCircle} style={{ fontSize: "30" }} />
+            <span className="nav-link-text mr-2 ">&nbsp;&nbsp;Add Channel</span>
           </span>
         ) : (
           <Link className="nav-link heading" to="/login">
-            <span className="nav-link-text mr-2">&nbsp;&nbsp;Channels</span>
-            <FontAwesomeIcon icon={faPlusCircle} />
+            <FontAwesomeIcon icon={faPlusCircle} style={{ fontSize: "30" }} />
+            <span className="nav-link-text mr-2 ">&nbsp;&nbsp;Add Channel</span>
           </Link>
         )}
         <div>

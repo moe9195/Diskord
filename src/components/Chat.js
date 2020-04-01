@@ -132,6 +132,7 @@ class Chat extends Component {
     return (
       <div className="container chatholder">
         <div className="container chatbox">
+          {this.props.channelID}
           {messagesCards}
           <div
             style={{ float: "left", clear: "both" }}

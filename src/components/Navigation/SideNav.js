@@ -1,13 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 // Fontawesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleLeft,
-  faAngleRight,
-  faPlusCircle
-} from "@fortawesome/free-solid-svg-icons";
+import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 // Components
 import ChannelNavLink from "./ChannelNavLink";
