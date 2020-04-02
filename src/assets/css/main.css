@@ -871,8 +871,6 @@ footer.sticky-footer {
 
 .messages {
   margin-top: 30px;
-  display: flex;
-  flex-direction: column;
 }
 
 .message {
@@ -885,12 +883,16 @@ footer.sticky-footer {
 
 .yours {
   word-wrap: break-word !important;
-  max-width: 400px;
 }
 
 .yours .message {
   background-color: #212529;
   position: relative;
+  max-width: 100vh;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  word-wrap: break-word !important;
+  padding: 8px 15px;
 }
 
 .yours .message.last:before {
@@ -921,11 +923,14 @@ footer.sticky-footer {
 }
 
 .mine .message {
-  margin-left: 50%;
   background-color: #212529;
   background-attachment: fixed;
   position: relative;
+  max-width: 100vh;
   word-wrap: break-word !important;
+  padding: 8px 15px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .mine .message.last:before {

@@ -7,16 +7,15 @@ import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 // Components
 import ChannelNavLink from "./ChannelNavLink";
 import AddChannelModal from "../AddChannelModal";
+import SearchBar from "../SearchBar";
 import { fetchChannels } from "../../redux/actions";
 
 class SideNav extends React.Component {
-  state = { collapsed: false, loading: true };
-
-  // componentDidMount = () => {
-  //   if (this.props.user) {
-  //     this.props.fetchChannels();
-  //   }
-  // };
+  state = {
+    collapsed: false,
+    loading: true,
+    query: ""
+  };
 
   componentDidMount = () => {
     if (this.state.loading) {
@@ -25,8 +24,29 @@ class SideNav extends React.Component {
     }
   };
 
+  setQuery = query => this.setState({ query });
+
+  filterChannels = () => {
+    const query = this.state.query.toLowerCase();
+    return this.props.channels.filter(channel => {
+      return `${channel.name}`.toLowerCase().includes(query);
+    });
+  };
+
   render() {
-    const channelLinks = this.props.channels.map(channel => (
+    let channels = this.filterChannels();
+
+    channels.sort(function(a, b) {
+      if (a.name < b.name) {
+        return -1;
+      }
+      if (a.name > b.name) {
+        return 1;
+      }
+      return 0;
+    });
+
+    const channelLinks = channels.map(channel => (
       <ChannelNavLink key={channel.id} channel={channel} />
     ));
 
@@ -36,6 +56,7 @@ class SideNav extends React.Component {
           <li className="nav-item" data-toggle="tooltip" data-placement="right">
             <AddChannelModal />
           </li>
+          <SearchBar onChange={this.setQuery} />
           {this.props.user ? (
             <div
               className="card text-left"
