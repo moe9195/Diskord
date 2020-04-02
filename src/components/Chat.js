@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-import { fetchMessages, postMessage } from "../redux/actions";
+import { fetchMessages } from "../redux/actions";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import "emoji-mart/css/emoji-mart.css";
-import { Picker } from "emoji-mart";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import messages from "../redux/reducers/messages";
-import { faPaperPlane, faGrin } from "@fortawesome/free-solid-svg-icons";
+import ChatBar from "./ChatBar";
+
 class Chat extends Component {
   state = {
     messages: { message: "" },
@@ -51,50 +49,11 @@ class Chat extends Component {
   scrollToBottom = () => {
     this.messagesEnd.scrollIntoView({ behavior: "auto" });
   };
-  showEmojis = e => {
-    this.setState(
-      {
-        showEmojis: true
-      },
-      () => document.addEventListener("click", this.closeMenu)
-    );
-  };
 
-  closeMenu = e => {
-    if (this.emojiPicker !== null && !this.emojiPicker.contains(e.target)) {
-      this.setState(
-        {
-          showEmojis: false
-        },
-        () => document.removeEventListener("click", this.closeMenu)
-      );
-    }
-  };
   clearForm = () => {
     this.setState({ messages: { message: "" } });
   };
 
-  handleChange = event =>
-    this.setState({
-      messages: {
-        message: event.target.value
-      }
-    });
-
-  onSubmit = event => {
-    event.preventDefault();
-    this.props.postMessage(
-      this.props.match.params.channelID,
-      this.state.messages
-    );
-    this.clearForm();
-  };
-  addEmoji = e => {
-    let emoji = e.native;
-    this.setState({
-      messages: { message: this.state.messages.message + emoji }
-    });
-  };
   validURL = string => {
     try {
       new URL(string);
@@ -174,55 +133,7 @@ class Chat extends Component {
           ></div>
         </div>
         <div className="chat-box-margin"></div>
-        <form onSubmit={this.onSubmit}>
-          <div className="right-inner-addon">
-            <div className="input-group mb-3">
-              <div className="input-group-prepend">
-                {this.state.showEmojis ? (
-                  <span
-                    style={styles.emojiPicker}
-                    ref={el => (this.emojiPicker = el)}
-                  >
-                    <Picker
-                      onSelect={this.addEmoji}
-                      emojiTooltip={true}
-                      theme="dark"
-                      title=" "
-                    />
-                  </span>
-                ) : (
-                  <></>
-                )}
-                <div
-                  className="btn btn-primary emoji-button"
-                  onClick={this.showEmojis}
-                >
-                  <FontAwesomeIcon icon={faGrin} />
-                </div>
-              </div>
-
-              <input
-                type="text"
-                placeholder="Message..."
-                className="form-control chat-box-borders"
-                name="message"
-                value={this.state.messages.message}
-                onChange={this.handleChange}
-              />
-              <div className="input-group-append">
-                <button
-                  type="submit"
-                  data-toggle="false"
-                  value="message"
-                  className="btn btn-primary send-button"
-                >
-                  {" "}
-                  <FontAwesomeIcon icon={faPaperPlane} />
-                </button>
-              </div>
-            </div>
-          </div>
-        </form>
+        <ChatBar channelID={this.state.channelID} />
       </div>
     );
   }
@@ -231,61 +142,14 @@ class Chat extends Component {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    channels: state.channels,
     messages: state.messages
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     fetchMessages: (channelID, timestamp) =>
-      dispatch(fetchMessages(channelID, timestamp)),
-    postMessage: (channelID, message) =>
-      dispatch(postMessage(channelID, message))
+      dispatch(fetchMessages(channelID, timestamp))
   };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Chat);
-
-const styles = {
-  container: {
-    padding: 20,
-    borderTop: "1px #4C758F solid",
-    marginBottom: 20
-  },
-  form: {
-    display: "flex"
-  },
-  input: {
-    color: "inherit",
-    background: "none",
-    outline: "none",
-    border: "none",
-    flex: 1,
-    fontSize: 16
-  },
-  getEmojiButton: {
-    cssFloat: "right",
-    border: "none",
-    margin: 0,
-    cursor: "pointer"
-  },
-  emojiPicker: {
-    position: "absolute",
-    bottom: 30,
-    right: 10,
-    cssFloat: "left",
-    marginLeft: "200px",
-    color: "black"
-  }
-};
-
-const customEmojis = [
-  {
-    name: "Octocat",
-    short_names: ["octocat"],
-    text: "",
-    emoticons: [],
-    keywords: ["github"],
-    imageUrl: "https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7"
-  }
-];
