@@ -33,7 +33,7 @@ class ChannelNavLink extends Component {
           }
         >
           <NavLink
-            onClick={() => this.currentChannel()}
+            onClick={() => this.currentChannel()} {/* no need for arrow function */}
             className="nav-link"
             to={`/channels/${this.props.channel.id}`}
           >

@@ -4,18 +4,17 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 const Loading = () => (
   <div className="spinner mx-auto text-center">
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-
+    <br /> {/* no, no, no... use margin-top */}
+    <br /> {/* no, no, no... use margin-top */}
+    <br /> {/* no, no, no... use margin-top */}
+    <br /> {/* no, no, no... use margin-top */}
+    <br /> {/* no, no, no... use margin-top */}
+    <br /> {/* no, no, no... use margin-top */}
+    <br /> {/* no, no, no... use margin-top */}
+    <br /> {/* no, no, no... use margin-top */}
+    <br /> {/* no, no, no... use margin-top */}
+    <br /> {/* no, no, no... use margin-top */}
+    <br /> {/* no, no, no... use margin-top */}
     <FontAwesomeIcon icon={faSpinner} spin size="4x" />
   </div>
 );

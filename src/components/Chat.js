@@ -18,6 +18,7 @@ class Chat extends Component {
   componentDidMount() {
     let timestamp = "";
     this.props.fetchMessages(this.state.channelID, timestamp);
+    // maybe move the function in setInterval to its own method
     this.interval = setInterval(() => {
       const messages = this.props.messages;
       if (messages.length) {
@@ -76,6 +77,10 @@ class Chat extends Component {
     if (!this.props.user) {
       return <Redirect to="/welcome" />;
     }
+
+    // check the loading state here, not down there
+
+    // this .map() should be simplified a lot, and moved to a separate component.
     const messagesCards = this.props.messages.map(message => {
       if (this.validURL(message.message)) {
         if (this.checkImageURL(message.message)) {
