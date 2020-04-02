@@ -16,22 +16,31 @@ class Chat extends Component {
   };
   //LIFECYCLE
   componentDidMount() {
-    this.props.fetchMessages(this.state.channelID);
-    this.interval = setInterval(
-      () => this.props.fetchMessages(this.state.channelID),
-      5000
-    );
+    let timestamp = "";
+
+    this.props.fetchMessages(this.state.channelID, timestamp);
+    this.interval = setInterval(() => {
+      const messages = this.props.messages;
+      if (messages.length) {
+        timestamp = messages[messages.length - 1].timestamp;
+      }
+      this.props.fetchMessages(this.state.channelID, timestamp);
+    }, 5000);
   }
 
   componentDidUpdate(prevProps) {
     const channelID = this.props.match.params.channelID;
     if (prevProps.match.params.channelID !== channelID) {
-      this.props.fetchMessages(channelID);
       clearInterval(this.interval);
-      this.interval = setInterval(
-        () => this.props.fetchMessages(channelID),
-        5000
-      );
+      this.interval = setInterval(() => {
+        const messages = this.props.messages;
+        let timestamp = "";
+        if (messages.length) {
+          timestamp = messages[messages.length - 1].timestamp;
+        }
+        console.log(timestamp);
+        this.props.fetchMessages(channelID, timestamp);
+      }, 5000);
     }
     this.scrollToBottom();
   }
@@ -228,7 +237,8 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    fetchMessages: channelID => dispatch(fetchMessages(channelID)),
+    fetchMessages: (channelID, timestamp) =>
+      dispatch(fetchMessages(channelID, timestamp)),
     postMessage: (channelID, message) =>
       dispatch(postMessage(channelID, message))
   };
