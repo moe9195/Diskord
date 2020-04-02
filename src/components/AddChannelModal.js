@@ -15,7 +15,7 @@ class AddChannelModal extends Component {
     this.setState({ [event.target.name]: event.target.value });
 
   clearFields = () => {
-    let empty = { name: "", image_url: "" };
+    let empty = { name: "", image_url: "" }; // this is just extra code, you could put that object in the setState()
     this.setState({ ...empty });
   };
   onSubmit = event => {

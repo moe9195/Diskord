@@ -40,9 +40,9 @@ export const postMessage = (channelID, message) => async dispatch => {
 };
 
 export const clearMessages = () => {
-  console.log("here");
+  console.log("here"); // remove this console log
   return {
     type: CLEAR_MESSAGES,
-    payload: []
+    payload: [] // you don't need to pass it a payload
   };
 };

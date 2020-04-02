@@ -13,7 +13,7 @@ export default (state = initialState, { type, payload }) => {
     case SEND_MESSAGE:
       return state.concat(payload);
     case CLEAR_MESSAGES:
-      return payload;
+      return payload; // no need for payload, just return [] directly
     default:
       return state;
   }
