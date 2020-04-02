@@ -422,7 +422,6 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
 }
 
 #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {
-  transition: all 0.2s ease-out;
   color: #99aab5;
 }
 
@@ -440,7 +439,6 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
   .navbar-sidenav
   > .nav-item
   > .nav-link.heading {
-  transition: all 0.2s ease-out;
   border-left: none;
   border-top-style: solid;
   border-top-color: #1f2223;
@@ -548,10 +546,18 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
   text-decoration: underline !important;
 }
 
+input:focus {
+  outline-offset: 0 !important;
+}
+
 .form-control {
   background: #99aab5 !important;
   border-color: #1f2223 !important;
   border-radius: 0.25rem !important;
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
 }
 
 .modal-body {
@@ -589,6 +595,12 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
   color: #1f2223 !important;
   background-color: #99aab5 !important;
   border-color: #1f2223 !important;
+  border-left-style: hidden !important;
+}
+
+*:focus {
+  outline: none !important ;
+  border: 0 !important;
 }
 
 .btn-secondary {
@@ -821,7 +833,6 @@ footer.sticky-footer {
   margin: 10px 0;
   border-top-right-radius: 0rem !important;
   border-bottom-right-radius: 0rem !important;
-
   border-right-style: hidden !important;
 }
 
@@ -833,8 +844,24 @@ footer.sticky-footer {
   border-right-style: hidden !important;
 }
 
-.send-button {
+.search-box-borders {
+  border-top-right-radius: 0rem !important;
+  border-bottom-right-radius: 0rem !important;
+  border-right-style: hidden !important;
+}
+
+.btn-static {
   border-left-style: hidden !important;
+  border-top-left-radius: 0% !important;
+  border-bottom-left-radius: 0% !important;
+  cursor: default !important;
+  pointer-events: none;
+}
+
+.btn-static:active {
+  -moz-box-shadow: inset 0 0 0px white;
+  -webkit-box-shadow: inset 0 0 0px white;
+  box-shadow: inset 0 0 0px white;
 }
 
 .emoji-button {
@@ -956,4 +983,50 @@ footer.sticky-footer {
   height: 20px;
   background: white;
   border-bottom-left-radius: 10px;
+}
+
+/* Search Bar */
+
+.searchbar {
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 250px;
+}
+
+/* Change Highlight Style Bootstrap Input */
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+  border-color: transparent;
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.075) inset,
+    0 0 0px rgba(126, 239, 104, 0.6);
+  outline: 0 none;
+  outline-offset: none !important;
+}
+
+/* Change Autofill Styles  */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #495057;
+  -webkit-box-shadow: 0 0 0px 1000px #99aab5 inset;
+  box-shadow: 0 0 0px 1000px #99aab5 inset;
 }

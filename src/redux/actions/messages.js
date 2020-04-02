@@ -1,15 +1,22 @@
-import { SEND_MESSAGE, SET_MESSAGES, CLEAR_MESSAGES } from "./actionTypes";
+import {
+  SEND_MESSAGE,
+  SET_MESSAGES,
+  CLEAR_MESSAGES,
+  LOADING
+} from "./actionTypes";
 import instance from "./instance";
 
 export const fetchMessages = (channelID, timeStamp) => async dispatch => {
   try {
-    let res = "";
-    if (timeStamp) {
-      res = await instance.get(`channels/${channelID}/?latest=${timeStamp}`);
-    } else {
-      res = await instance.get(`channels/${channelID}/`);
-    }
+    const res = await instance.get(
+      `channels/${channelID}/?latest=${timeStamp}`
+    );
+
     const messages = res.data;
+    dispatch({
+      type: LOADING,
+      payload: false
+    });
     dispatch({
       type: SET_MESSAGES,
       payload: messages

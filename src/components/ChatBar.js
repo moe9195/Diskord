@@ -91,13 +91,14 @@ class ChatBar extends Component {
                 name="message"
                 value={this.state.messages.message}
                 onChange={this.handleChange}
+                autocomplete="off"
               />
               <div className="input-group-append">
                 <button
                   type="submit"
                   data-toggle="false"
                   value="message"
-                  className="btn btn-primary send-button"
+                  className="btn btn-primary send-button btn-static"
                 >
                   {" "}
                   <FontAwesomeIcon icon={faPaperPlane} />

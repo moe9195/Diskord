@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import { getCurrentChannel, clearMessages } from "../../redux/actions";
+import {
+  getCurrentChannel,
+  clearMessages,
+  toggleLoading
+} from "../../redux/actions";
 import ReactImageFallback from "react-image-fallback";
 
 class ChannelNavLink extends Component {
@@ -9,6 +13,7 @@ class ChannelNavLink extends Component {
 
   currentChannel = () => {
     this.props.clearMessages();
+    this.props.toggleLoading();
     this.props.getCurrentChannel(this.props.channel);
     this.setState({ clicked: !this.state.clicked });
   };
@@ -65,7 +70,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getCurrentChannel: channel => dispatch(getCurrentChannel(channel)),
-    clearMessages: () => dispatch(clearMessages())
+    clearMessages: () => dispatch(clearMessages()),
+    toggleLoading: () => dispatch(toggleLoading())
   };
 };
 
