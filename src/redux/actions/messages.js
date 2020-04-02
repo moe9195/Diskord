@@ -1,9 +1,14 @@
-import { SEND_MESSAGE, SET_MESSAGES } from "./actionTypes";
+import { SEND_MESSAGE, SET_MESSAGES, CLEAR_MESSAGES } from "./actionTypes";
 import instance from "./instance";
 
-export const fetchMessages = channelID => async dispatch => {
+export const fetchMessages = (channelID, timeStamp) => async dispatch => {
   try {
-    const res = await instance.get(`channels/${channelID}/`);
+    let res = "";
+    if (timeStamp) {
+      res = await instance.get(`channels/${channelID}/?latest=${timeStamp}`);
+    } else {
+      res = await instance.get(`channels/${channelID}/`);
+    }
     const messages = res.data;
     dispatch({
       type: SET_MESSAGES,
@@ -28,8 +33,9 @@ export const postMessage = (channelID, message) => async dispatch => {
 };
 
 export const clearMessages = () => {
+  console.log("here");
   return {
-    type: SET_MESSAGES,
+    type: CLEAR_MESSAGES,
     payload: []
   };
 };

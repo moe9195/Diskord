@@ -1,14 +1,19 @@
-import { SET_MESSAGES, SEND_MESSAGE } from "../actions/actionTypes";
+import {
+  SET_MESSAGES,
+  SEND_MESSAGE,
+  CLEAR_MESSAGES
+} from "../actions/actionTypes";
 
 const initialState = [];
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case SET_MESSAGES:
-      return payload;
+      return state.concat(payload);
     case SEND_MESSAGE:
       return state.concat(payload);
-
+    case CLEAR_MESSAGES:
+      return payload;
     default:
       return state;
   }
