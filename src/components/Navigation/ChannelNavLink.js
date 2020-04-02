@@ -40,15 +40,14 @@ class ChannelNavLink extends Component {
             <ReactImageFallback
               src={this.props.channel.image_url}
               style={{
-                borderRadius: "50%",
-                width: "30px",
-                height: "30px",
+                width: "40px",
+                height: "40px",
                 overflow: "hidden"
               }}
               fallbackImage="https://raw.githubusercontent.com/moe9195/Chatr2.0-UI/master/src/assets/noimage.jpg"
               initialImage="loader.gif"
               alt="this.props.channel.name"
-              className="my-image"
+              className="channel-img"
             />
 
             <span className="nav-link-text">

@@ -322,12 +322,12 @@ body.fixed-nav {
 
 body.sidenav-toggled #mainNav.fixed-top .sidenav-toggler {
   overflow-x: hidden;
-  width: 55px;
+  width: 66px;
 }
 
 body.sidenav-toggled #mainNav.fixed-top .sidenav-toggler .nav-item,
 body.sidenav-toggled #mainNav.fixed-top .sidenav-toggler .nav-link {
-  width: 55px !important;
+  width: 66px !important;
 }
 
 body.sidenav-toggled #mainNav.fixed-top #sidenavToggler i {
@@ -379,12 +379,12 @@ body.sidenav-toggled #mainNav.static-top #sidenavToggler i {
 
 @media (min-width: 992px) {
   body.sidenav-toggled .content-wrapper {
-    margin-left: 55px;
+    margin-left: 66px;
   }
 }
 
 body.sidenav-toggled .navbar-sidenav {
-  width: 55px;
+  width: 66px;
 }
 
 body.sidenav-toggled .navbar-sidenav .nav-link-text {
@@ -393,7 +393,7 @@ body.sidenav-toggled .navbar-sidenav .nav-link-text {
 
 body.sidenav-toggled .navbar-sidenav .nav-item,
 body.sidenav-toggled .navbar-sidenav .nav-link {
-  width: 55px !important;
+  width: 66px !important;
 }
 
 body.sidenav-toggled .navbar-sidenav .nav-item:after,
@@ -784,7 +784,7 @@ footer.sticky-footer {
   width: 100%;
   height: 56px;
   background-color: #23272a;
-  line-height: 55px;
+  line-height: 66px;
 }
 
 @media (min-width: 992px) {
@@ -795,7 +795,7 @@ footer.sticky-footer {
 
 @media (min-width: 992px) {
   body.sidenav-toggled footer.sticky-footer {
-    width: calc(100% - 55px);
+    width: calc(100% - 66px);
   }
 }
 
@@ -875,11 +875,12 @@ footer.sticky-footer {
 /* images */
 
 .channel-img {
-  border-radius: 50%;
+  border-radius: 100%;
+  transition: 0.4s;
 }
 
 .channel-img:hover {
-  border-radius: 100%;
+  border-radius: 20%;
 }
 
 /* Chat bubbles */
@@ -1029,4 +1030,25 @@ select:-webkit-autofill:hover select:-webkit-autofill:focus {
   -webkit-text-fill-color: #495057;
   -webkit-box-shadow: 0 0 0px 1000px #99aab5 inset;
   box-shadow: 0 0 0px 1000px #99aab5 inset;
+}
+
+.font-awesome-plus {
+  width: 71px !important;
+  height: 71px !important;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+/* .font-awesome-plus:hover {
+  width: 45px !important;
+  height: 45px !important;
+} */
+
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
 }

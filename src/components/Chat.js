@@ -85,7 +85,11 @@ class Chat extends Component {
                 <p className="message">{message.username}: </p>
               </div>
               <br />
-              <img src={`${message.message}`} alt="image" />
+              <img
+                style={{ maxWidth: "60vh" }}
+                src={`${message.message}`}
+                alt="image"
+              />
               <br />
               <br />
             </div>

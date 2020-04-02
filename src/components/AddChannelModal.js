@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { faPlusCircle, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 import { postChannel } from "../redux/actions";
 import { Link } from "react-router-dom";
+import ReactImageFallback from "react-image-fallback";
 
 class AddChannelModal extends Component {
   state = {
@@ -27,18 +28,48 @@ class AddChannelModal extends Component {
     return (
       <div>
         {this.props.user ? (
-          <span
-            className="nav-link heading"
-            data-toggle="modal"
-            data-target="#staticBackdrop"
+          <div
+            style={{
+              borderBottomStyle: "solid",
+              borderBottomWidth: "thin",
+              borderBottomColor: "#2c2f33"
+            }}
           >
-            <FontAwesomeIcon icon={faPlusCircle} style={{ fontSize: "30" }} />
-            <span className="nav-link-text mr-2 ">&nbsp;&nbsp;Add Channel</span>
-          </span>
+            <span
+              className="nav-link"
+              style={{ paddingBottom: "20px" }}
+              data-toggle="modal"
+              data-target="#staticBackdrop"
+            >
+              <ReactImageFallback
+                src="../../assets/plusicon.png"
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  overflow: "hidden"
+                }}
+                fallbackImage="https://raw.githubusercontent.com/moe9195/Chatr2.0-UI/master/src/assets/noimage.jpg"
+                initialImage="loader.gif"
+                alt="this.props.channel.name"
+                className="channel-img"
+              />
+
+              <text style={{ verticalAlign: "middle", padding: "10px" }}>
+                {/* Add Channel */}
+              </text>
+            </span>
+          </div>
         ) : (
           <Link className="nav-link heading" to="/login">
-            <FontAwesomeIcon icon={faPlusCircle} style={{ fontSize: "30" }} />
-            <span className="nav-link-text mr-2 ">&nbsp;&nbsp;Add Channel</span>
+            <span class="fa-layers fa-fw">
+              <FontAwesomeIcon
+                className="font-awesome-plus-circle"
+                icon={faPlusCircle}
+              />
+            </span>
+            <text style={{ verticalAlign: "top", padding: "10px" }}>
+              {/* Add Channel */}
+            </text>
           </Link>
         )}
         <div>
@@ -77,6 +108,7 @@ class AddChannelModal extends Component {
                         name="name"
                         value={this.state.name}
                         onChange={this.onTextChange}
+                        autoComplete="off"
                       />
                     </div>
                     <div className="input-group mb-3">
@@ -88,6 +120,7 @@ class AddChannelModal extends Component {
                         name="image_url"
                         value={this.state.image_url}
                         onChange={this.onTextChange}
+                        autoComplete="off"
                       />
                     </div>
                     <div className="modal-footer">

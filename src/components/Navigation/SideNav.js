@@ -53,10 +53,20 @@ class SideNav extends React.Component {
     return (
       <div>
         <ul className="navbar-nav navbar-sidenav" id="exampleAccordion">
+          <br></br>
+          {!this.state.collapsed ? (
+            <>
+              <SearchBar onChange={this.setQuery} />
+            </>
+          ) : (
+            <></>
+          )}
+
           <li className="nav-item" data-toggle="tooltip" data-placement="right">
             <AddChannelModal />
           </li>
-          <SearchBar onChange={this.setQuery} />
+          <br></br>
+
           {this.props.user ? (
             <div
               className="card text-left"
