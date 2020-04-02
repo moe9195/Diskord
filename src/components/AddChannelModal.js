@@ -5,6 +5,7 @@ import { faPlusCircle, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 import { postChannel } from "../redux/actions";
 import { Link } from "react-router-dom";
 import ReactImageFallback from "react-image-fallback";
+import plusIcon from "./plusIcon.png";
 
 class AddChannelModal extends Component {
   state = {
@@ -42,18 +43,17 @@ class AddChannelModal extends Component {
               data-target="#staticBackdrop"
             >
               <ReactImageFallback
-                src="../../assets/plusicon.png"
+                src={plusIcon}
                 style={{
                   width: "40px",
                   height: "40px",
                   overflow: "hidden"
                 }}
-                fallbackImage="https://raw.githubusercontent.com/moe9195/Chatr2.0-UI/master/src/assets/noimage.jpg"
+                fallbackImage="https://raw.githubusercontent.com/moe9195/Chatr2.0-UI/master/src/assets/plusIcon.png"
                 initialImage="loader.gif"
-                alt="this.props.channel.name"
+                alt="plusIcon"
                 className="channel-img"
               />
-
               <text style={{ verticalAlign: "middle", padding: "10px" }}>
                 {/* Add Channel */}
               </text>

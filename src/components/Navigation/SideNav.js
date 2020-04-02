@@ -70,7 +70,7 @@ class SideNav extends React.Component {
           {this.props.user ? (
             <div
               className="card text-left"
-              style={{ width: "15rem", border: "none" }}
+              style={{ width: "15.6rem", border: "none" }}
             >
               {channelLinks}
             </div>

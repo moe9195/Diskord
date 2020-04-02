@@ -82,7 +82,12 @@ class Chat extends Component {
           return (
             <div>
               <div className="yours messages">
-                <p className="message">{message.username}: </p>
+                <p className="message">
+                  {" "}
+                  <div style={{ fontSize: 16, color: "#7289DA" }}>
+                    {message.username}:
+                  </div>{" "}
+                </p>
               </div>
               <br />
               <img
@@ -99,10 +104,22 @@ class Chat extends Component {
       return this.props.user.username !== message.username ? (
         <div className="yours messages">
           <div className="message">
-            <div style={{ fontSize: 16, color: "#7289DA" }}>
-              {message.username}
+            <div
+              style={{ fontSize: 16, color: "#7289DA", paddingRight: "0px" }}
+            >
+              {message.username}{" "}
             </div>
             <div style={{ fontSize: 13 }}> {message.message}</div>
+            <div
+              style={{
+                fontSize: "10px",
+                display: "inline",
+                opacity: "0.5",
+                align: "right"
+              }}
+            >
+              {message.timestamp.substring(11, 16)}
+            </div>
           </div>
         </div>
       ) : (
@@ -116,7 +133,16 @@ class Chat extends Component {
                 marginBottom: "0px"
               }}
             >
-              <div style={{ fontSize: 13 }}> {message.message}</div>
+              <div style={{ fontSize: 13 }}> {message.message}</div>{" "}
+              <div
+                style={{
+                  fontSize: "10px",
+                  display: "inline",
+                  opacity: "0.5"
+                }}
+              >
+                {message.timestamp.substring(11, 16)}
+              </div>
             </div>
           </div>
         </div>

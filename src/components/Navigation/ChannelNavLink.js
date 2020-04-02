@@ -46,7 +46,7 @@ class ChannelNavLink extends Component {
               }}
               fallbackImage="https://raw.githubusercontent.com/moe9195/Chatr2.0-UI/master/src/assets/noimage.jpg"
               initialImage="loader.gif"
-              alt="this.props.channel.name"
+              alt={this.props.channel.name}
               className="channel-img"
             />
 
