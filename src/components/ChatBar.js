@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { postMessage } from "../redux/actions";
+import { postMessage, getCurrentChannel } from "../redux/actions";
 import { connect } from "react-redux";
 import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
@@ -44,7 +44,7 @@ class ChatBar extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    this.props.postMessage(this.props.channelID, this.state.messages);
+    this.props.onSubmit(this.state.messages);
     this.clearForm();
   };
   addEmoji = e => {
@@ -115,13 +115,15 @@ class ChatBar extends Component {
 const mapStateToProps = state => {
   return {
     messages: state.messages,
-    currentChannel: state.manager.currentChannel
+    currentChannel: state.manager.currentChannel,
+    channels: state.channels
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     postMessage: (channelID, message) =>
-      dispatch(postMessage(channelID, message))
+      dispatch(postMessage(channelID, message)),
+    getCurrentChannel: channel => dispatch(getCurrentChannel(channel))
   };
 };
 
