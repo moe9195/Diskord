@@ -11,7 +11,7 @@ import AuthButton from "./AuthButton";
 
 class NavBar extends Component {
   state = {
-    darkmode: false
+    darkmode: false,
   };
   changeMode = () => {
     this.props.toggleDarkMode(this.state.darkmode);
@@ -29,7 +29,7 @@ class NavBar extends Component {
         id="mainNav"
       >
         <Link className="navbar-brand" to="/welcome">
-          <div className={this.props.darkmode ? "" : "light"}>Chatr2.0</div>
+          <div className={this.props.darkmode ? "" : "light"}>Diskord</div>
         </Link>
         <FontAwesomeIcon icon={faAdjust} /> &nbsp;&nbsp;&nbsp;
         <div class="custom-control custom-switch">
@@ -46,7 +46,7 @@ class NavBar extends Component {
         </div>
         <h6 style={{ paddingLeft: "5vh" }}>
           {this.props.currentChannel ? (
-            <div style={{ fontSize: "14px" }}>
+            <div style={{ fontSize: "13px" }}>
               Channel : &nbsp;{this.props.currentChannel.name} <br></br>{" "}
               Owner&nbsp;&nbsp; &nbsp;: &nbsp;
               {this.props.currentChannel.owner}
@@ -75,16 +75,16 @@ class NavBar extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     currentChannel: state.manager.currentChannel,
-    darkmode: state.manager.darkmode
+    darkmode: state.manager.darkmode,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    toggleDarkMode: mode => dispatch(toggleDarkMode(mode))
+    toggleDarkMode: (mode) => dispatch(toggleDarkMode(mode)),
   };
 };
 

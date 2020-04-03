@@ -5,15 +5,15 @@ const Footer = ({ darkmode }) => (
   <footer className={darkmode ? "sticky-footer" : "sticky-footer light"}>
     <div className="container">
       <div className="text-center">
-        <small>Copyright © CODED Chatr 2019</small>
+        <small>Copyright © LAZGA Diskord 2020</small>
       </div>
     </div>
   </footer>
 );
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    darkmode: state.manager.darkmode
+    darkmode: state.manager.darkmode,
   };
 };
 
