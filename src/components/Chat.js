@@ -81,20 +81,41 @@ class Chat extends Component {
         if (this.checkImageURL(message.message)) {
           return (
             <div>
-              <div className="yours messages">
+              <div>
                 <p className="message">
                   {" "}
-                  <div style={{ fontSize: 16, color: "#7289DA" }}>
-                    {message.username}:
-                  </div>{" "}
+                  <div
+                    style={{
+                      fontSize: 16,
+                      color: "#7289DA",
+                      padding:
+                        this.props.user.username !== message.username
+                          ? "0px"
+                          : "8px 15px"
+                    }}
+                  >
+                    {this.props.user.username !== message.username
+                      ? `${message.username}:`
+                      : ""}
+                  </div>
                 </p>
               </div>
               <br />
-              <img
-                style={{ maxWidth: "60vh" }}
-                src={`${message.message}`}
-                alt="image"
-              />
+              <div
+                className="img-align"
+                style={{
+                  textAlign:
+                    this.props.user.username === message.username
+                      ? "right"
+                      : "left"
+                }}
+              >
+                <img
+                  style={{ maxWidth: "60vh" }}
+                  src={`${message.message}`}
+                  alt="image"
+                />
+              </div>
               <br />
               <br />
             </div>
