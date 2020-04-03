@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { fetchMessages } from "../redux/actions";
+import { fetchMessages, postMessage } from "../redux/actions";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import "emoji-mart/css/emoji-mart.css";
@@ -72,6 +72,9 @@ class Chat extends Component {
   checkImageURL(url) {
     return url.match(/.(jpeg|jpg|gif|png)$/) != null;
   }
+  onSubmit = message => {
+    this.props.postMessage(this.props.match.params.channelID, message);
+  };
   render() {
     if (!this.props.user) {
       return <Redirect to="/welcome" />;
@@ -195,7 +198,10 @@ class Chat extends Component {
               ></div>
             </div>
             <div className="chat-box-margin"></div>
-            <ChatBar channelID={this.state.channelID} />
+            <ChatBar
+              channelID={this.state.channelID}
+              onSubmit={this.onSubmit}
+            />
           </div>
         )}
       </div>
@@ -213,7 +219,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchMessages: (channelID, timestamp) =>
-      dispatch(fetchMessages(channelID, timestamp))
+      dispatch(fetchMessages(channelID, timestamp)),
+    postMessage: (channelID, message) =>
+      dispatch(postMessage(channelID, message))
   };
 };
 
