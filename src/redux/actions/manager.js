@@ -1,4 +1,4 @@
-import { CURRENT_CHANNEL, LOADING } from "./actionTypes";
+import { CURRENT_CHANNEL, LOADING, COLOR_MODE } from "./actionTypes";
 
 export const getCurrentChannel = channel => {
   return {
@@ -11,5 +11,12 @@ export const toggleLoading = () => {
   return {
     type: LOADING,
     payload: true
+  };
+};
+
+export const toggleDarkMode = mode => {
+  return {
+    type: COLOR_MODE,
+    payload: mode
   };
 };

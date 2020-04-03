@@ -1,7 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
 
-const Footer = () => (
-  <footer className="sticky-footer">
+const Footer = ({ darkmode }) => (
+  <footer className={darkmode ? "sticky-footer" : "sticky-footer light"}>
     <div className="container">
       <div className="text-center">
         <small>Copyright © CODED Chatr 2019</small>
@@ -10,4 +11,10 @@ const Footer = () => (
   </footer>
 );
 
-export default Footer;
+const mapStateToProps = state => {
+  return {
+    darkmode: state.manager.darkmode
+  };
+};
+
+export default connect(mapStateToProps)(Footer);

@@ -8166,6 +8166,11 @@ react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.10.1.tgz#0612786bf19df406502d935494f0450b40b8294f"
   integrity sha512-BXUMf9sIOPXXZWqr7+c5SeOKJykyVr2u0UDzEf4LNGc6taGkQe1A9DFD07umCIXz45RLr9oAAwZbAJ0Pkknfaw==
 
+react-lib-adler32@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-lib-adler32/-/react-lib-adler32-1.0.3.tgz#63df1aed274eabcc1c5067077ea281ec30888ba7"
+  integrity sha512-AqFqdt4cP0RPffHNjVHZ7tyIgnoSzNxgFhG8XKMXCtA1dZ72gTPO4iYFwWDKHqvE8sHS14rhltQTdbXU5G4BFA==
+
 react-redux@^7.2.0:
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-7.2.0.tgz#f970f62192b3981642fec46fd0db18a074fe879d"
@@ -9340,6 +9345,13 @@ strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
   integrity sha1-PFMZQukIwml8DsNEhYwobHygpgo=
+
+style-it@^2.1.4:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/style-it/-/style-it-2.1.4.tgz#bae8e73c69a9586a138a31fd3104182171b7149c"
+  integrity sha512-9eoEdUGD68XjvW/+BWo5Ir7d5+cXChcQMAuYHmgrHImz/jIfabxNj4pc+6DxVhxHnW92+ZzMVVUuxs4iTOXjsQ==
+  dependencies:
+    react-lib-adler32 "^1.0.3"
 
 style-loader@1.0.0:
   version "1.0.0"

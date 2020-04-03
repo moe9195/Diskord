@@ -34,7 +34,7 @@ class ChannelNavLink extends Component {
         >
           <NavLink
             onClick={() => this.currentChannel()}
-            className="nav-link"
+            className={this.props.darkmode ? "nav-link" : "nav-link light"}
             to={`/channels/${this.props.channel.id}`}
           >
             <ReactImageFallback
@@ -44,7 +44,7 @@ class ChannelNavLink extends Component {
                 height: "40px",
                 overflow: "hidden"
               }}
-              fallbackImage="https://raw.githubusercontent.com/moe9195/Chatr2.0-UI/master/src/assets/noimage.jpg"
+              fallbackImage="https://raw.githubusercontent.com/moe9195/Chatr2.0-UI/master/src/assets/no-image-box.png"
               initialImage="loader.gif"
               alt={this.props.channel.name}
               className="channel-img"
@@ -62,7 +62,8 @@ class ChannelNavLink extends Component {
 
 const mapStateToProps = state => {
   return {
-    currentChannel: state.manager.currentChannel
+    currentChannel: state.manager.currentChannel,
+    darkmode: state.manager.darkmode
   };
 };
 

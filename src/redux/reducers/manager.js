@@ -1,6 +1,6 @@
-import { CURRENT_CHANNEL, LOADING } from "../actions/actionTypes";
+import { CURRENT_CHANNEL, LOADING, COLOR_MODE } from "../actions/actionTypes";
 
-const initialState = { currentChannel: null, loading: true };
+const initialState = { currentChannel: null, loading: true, darkmode: true };
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
@@ -8,6 +8,8 @@ export default (state = initialState, { type, payload }) => {
       return { ...state, currentChannel: payload };
     case LOADING:
       return { ...state, loading: payload };
+    case COLOR_MODE:
+      return { ...state, darkmode: payload };
 
     default:
       return state;

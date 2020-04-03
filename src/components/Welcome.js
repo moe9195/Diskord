@@ -3,7 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { resetErrors } from "../redux/actions";
 
-const Welcome = ({ user }) => (
+const Welcome = ({ user, darkmode }) => (
   <header className="masthead d-flex">
     {user ? <Redirect to="/secret" /> : <></>}
     <div className="container text-center my-auto z-1">
@@ -12,7 +12,12 @@ const Welcome = ({ user }) => (
         <em>You're gonna need to login to see the messages</em>
       </h3>
       {!user ? (
-        <Link to="/login" className="btn btn-primary btn-lg">
+        <Link
+          to="/login"
+          className={
+            darkmode ? "btn btn-primary btn-lg" : "btn btn-primary btn-lg light"
+          }
+        >
           Login
         </Link>
       ) : (
@@ -23,8 +28,9 @@ const Welcome = ({ user }) => (
   </header>
 );
 
-const mapStateToProps = ({ user }) => ({
-  user
+const mapStateToProps = state => ({
+  user: state.user,
+  darkmode: state.manager.darkmode
 });
 
 export default connect(mapStateToProps)(Welcome);

@@ -31,10 +31,20 @@ class RegistationForm extends Component {
     const { username, password } = this.state;
     const { errors } = this.props;
     return (
-      <div className="card col-6 mx-auto p-0 mt-5">
+      <div
+        className={
+          this.props.darkmode
+            ? "card col-6 mx-auto p-0 mt-5"
+            : "card col-6 mx-auto p-0 mt-5 light"
+        }
+      >
         {this.props.user ? <Redirect to="/secret" /> : <></>}
         <div className="card-body">
-          <h5 className="card-title mb-4">
+          <h5
+            className={
+              this.props.darkmode ? "card-title mb-4" : "card-title mb-4 light"
+            }
+          >
             {type === "login"
               ? "Login to send messages"
               : "Register an account"}
@@ -55,7 +65,9 @@ class RegistationForm extends Component {
             )}
             <div className="form-group">
               <input
-                className="form-control"
+                className={
+                  this.props.darkmode ? "form-control" : "form-control light"
+                }
                 type="text"
                 placeholder="Username"
                 value={username}
@@ -65,7 +77,9 @@ class RegistationForm extends Component {
             </div>
             <div className="form-group">
               <input
-                className="form-control"
+                className={
+                  this.props.darkmode ? "form-control" : "form-control light"
+                }
                 type="password"
                 placeholder="Password"
                 value={password}
@@ -74,7 +88,11 @@ class RegistationForm extends Component {
               />
             </div>
             <input
-              className="btn btn-primary"
+              className={
+                this.props.darkmode
+                  ? "btn btn-primary"
+                  : "btn btn-primary light"
+              }
               type="submit"
               value={type.replace(/^\w/, c => c.toUpperCase())}
             />
@@ -106,7 +124,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     errors: state.errors.errors,
-    user: state.user
+    user: state.user,
+    darkmode: state.manager.darkmode
   };
 };
 

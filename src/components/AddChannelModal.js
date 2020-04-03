@@ -42,7 +42,7 @@ class AddChannelModal extends Component {
               data-toggle="modal"
               data-target="#staticBackdrop"
             >
-              <ReactImageFallback
+              {/* <ReactImageFallback
                 src={plusIcon}
                 style={{
                   width: "40px",
@@ -53,10 +53,22 @@ class AddChannelModal extends Component {
                 initialImage="loader.gif"
                 alt="plusIcon"
                 className="channel-img"
-              />
-              <text style={{ verticalAlign: "middle", padding: "10px" }}>
-                Add Channel
-              </text>
+              /> */}
+              <div className={this.props.darkmode ? "" : "light"}>
+                <FontAwesomeIcon
+                  icon={faPlusCircle}
+                  style={{ fontSize: "40px" }}
+                  label="ha"
+                />
+                <text
+                  style={{
+                    verticalAlign: "super",
+                    padding: "10px"
+                  }}
+                >
+                  Add Channel
+                </text>
+              </div>
             </span>
           </div>
         ) : (
@@ -99,28 +111,44 @@ class AddChannelModal extends Component {
             aria-hidden="true"
           >
             <div className="modal-dialog" role="document">
-              <div className="modal-content">
-                <div className="modal-header">
+              <div
+                className={
+                  this.props.darkmode ? "modal-content" : "modal-content light"
+                }
+              >
+                <div
+                  className={
+                    this.props.darkmode ? "modal-header" : "modal-header light"
+                  }
+                >
                   <h5 className="modal-title" id="staticBackdropLabel">
                     Add Channel
                   </h5>
                   <button
                     type="button"
-                    className="close"
+                    className={this.props.darkmode ? "close" : "close light"}
                     data-dismiss="modal"
                     aria-label="Close"
                   >
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div className="modal-body">
+                <div
+                  className={
+                    this.props.darkmode ? "modal-body" : "modal-body light"
+                  }
+                >
                   <form onSubmit={this.onSubmit}>
                     <div className="input-group mb-3">
                       <div className="input-group-prepend"></div>
                       <input
                         type="text"
                         placeholder="Add Channel..."
-                        className="form-control"
+                        className={
+                          this.props.darkmode
+                            ? "form-control"
+                            : "form-control light"
+                        }
                         name="name"
                         value={this.state.name}
                         onChange={this.onTextChange}
@@ -131,19 +159,34 @@ class AddChannelModal extends Component {
                       <div className="input-group-prepend"></div>
                       <input
                         type="url"
-                        placeholder="Add Channel Name..."
-                        className="form-control"
+                        placeholder="Add Image URL..."
+                        className={
+                          this.props.darkmode
+                            ? "form-control"
+                            : "form-control light"
+                        }
                         name="image_url"
                         value={this.state.image_url}
                         onChange={this.onTextChange}
                         autoComplete="off"
                       />
                     </div>
-                    <div className="modal-footer">
+                    <div
+                      className={
+                        this.props.darkmode
+                          ? "modal-footer"
+                          : "modal-footer light"
+                      }
+                    >
                       <button
                         type="button"
                         placeholder="Add Image URL..."
-                        className="btn btn-secondary"
+                        style={{ borderLeftStyle: "solid" }}
+                        className={
+                          this.props.darkmode
+                            ? "btn btn-secondary"
+                            : "btn btn-secondary light"
+                        }
                         data-dismiss="modal"
                         onClick={this.clearFields}
                       >
@@ -153,7 +196,12 @@ class AddChannelModal extends Component {
                         type="submit"
                         data-toggle="false"
                         value="Add Channel"
-                        className="btn btn-primary"
+                        style={{ borderLeftStyle: "solid" }}
+                        className={
+                          this.props.darkmode
+                            ? "btn btn-primary"
+                            : "btn btn-primary light"
+                        }
                       >
                         Submit
                       </button>
@@ -171,7 +219,8 @@ class AddChannelModal extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user
+    user: state.user,
+    darkmode: state.manager.darkmode
   };
 };
 const mapDispatchToProps = dispatch => {

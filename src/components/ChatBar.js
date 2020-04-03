@@ -77,7 +77,11 @@ class ChatBar extends Component {
                   <></>
                 )}
                 <div
-                  className="btn btn-primary emoji-button"
+                  className={
+                    this.props.darkmode
+                      ? "btn btn-primary emoji-button"
+                      : "btn btn-primary emoji-button light"
+                  }
                   onClick={this.showEmojis}
                 >
                   <FontAwesomeIcon icon={faGrin} />
@@ -87,7 +91,11 @@ class ChatBar extends Component {
               <input
                 type="text"
                 placeholder="Message.."
-                className="form-control chat-box-borders"
+                className={
+                  this.props.darkmode
+                    ? "form-control chat-box-borders"
+                    : "form-control chat-box-borders light"
+                }
                 name="message"
                 value={this.state.messages.message}
                 onChange={this.handleChange}
@@ -98,7 +106,11 @@ class ChatBar extends Component {
                   type="submit"
                   data-toggle="false"
                   value="message"
-                  className="btn btn-primary send-button btn-static"
+                  className={
+                    this.props.darkmode
+                      ? "btn btn-primary send-button btn-static"
+                      : "btn btn-primary send-button btn-static light"
+                  }
                 >
                   {" "}
                   <FontAwesomeIcon icon={faPaperPlane} />
@@ -116,7 +128,8 @@ const mapStateToProps = state => {
   return {
     messages: state.messages,
     currentChannel: state.manager.currentChannel,
-    channels: state.channels
+    channels: state.channels,
+    darkmode: state.manager.darkmode
   };
 };
 const mapDispatchToProps = dispatch => {

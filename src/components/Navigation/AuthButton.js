@@ -11,7 +11,13 @@ import {
   faUserPlus
 } from "@fortawesome/free-solid-svg-icons";
 
-const AuthButton = ({ user, logout, clearChannels, clearMessages }) => {
+const AuthButton = ({
+  user,
+  logout,
+  clearChannels,
+  clearMessages,
+  darkmode
+}) => {
   const logoutAndClearChannels = () => {
     // clearChannels();
     // clearMessages();
@@ -34,10 +40,14 @@ const AuthButton = ({ user, logout, clearChannels, clearMessages }) => {
   if (user) {
     buttons = (
       <>
-        <span className="navbar-text">{user.username}</span>
+        <span className={darkmode ? "navbar-text" : "navbar-text light"}>
+          {user.username}
+        </span>
         <li className="nav-item">
           <span className="nav-link" onClick={logoutAndClearChannels}>
-            <FontAwesomeIcon icon={faSignOutAlt} /> Logout
+            <div className={darkmode ? "" : "light"}>
+              <FontAwesomeIcon icon={faSignOutAlt} /> Logout
+            </div>
           </span>
         </li>
       </>
@@ -47,9 +57,12 @@ const AuthButton = ({ user, logout, clearChannels, clearMessages }) => {
   return <ul className="navbar-nav ml-auto">{buttons}</ul>;
 };
 
-const mapStateToProps = ({ user }) => ({
-  user
-});
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+    darkmode: state.manager.darkmode
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {

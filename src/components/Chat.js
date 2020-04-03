@@ -163,9 +163,13 @@ class Chat extends Component {
 
       return this.props.user.username !== message.username ? (
         <div className="yours messages">
-          <div className="message">
+          <div className={this.props.darkmode ? "message" : "message-light"}>
             <div
-              style={{ fontSize: 16, color: "#7289DA", paddingRight: "0px" }}
+              style={
+                this.props.darkmode
+                  ? { fontSize: 16, color: "#7289DA", paddingRight: "0px" }
+                  : { fontSize: 16, color: "#4a57a8", paddingRight: "0px" }
+              }
             >
               {message.username}{" "}
             </div>
@@ -183,10 +187,14 @@ class Chat extends Component {
           </div>
         </div>
       ) : (
-        <div className="mine messages">
+        <div
+          className={
+            this.props.darkmode ? "mine messages" : "mine messages light"
+          }
+        >
           <div align="right">
             <div
-              className="message"
+              className={this.props.darkmode ? "message" : "message-light"}
               style={{
                 padding: "8px 15px",
                 marginTop: "0px",
@@ -249,7 +257,8 @@ const mapStateToProps = state => {
   return {
     user: state.user,
     messages: state.messages,
-    loading: state.manager.loading
+    loading: state.manager.loading,
+    darkmode: state.manager.darkmode
   };
 };
 const mapDispatchToProps = dispatch => {

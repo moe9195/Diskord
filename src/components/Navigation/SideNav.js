@@ -52,7 +52,14 @@ class SideNav extends React.Component {
 
     return (
       <div>
-        <ul className="navbar-nav navbar-sidenav" id="exampleAccordion">
+        <ul
+          className={
+            this.props.darkmode
+              ? "navbar-nav navbar-sidenav"
+              : "navbar-nav navbar-sidenav light"
+          }
+          id="exampleAccordion"
+        >
           <br></br>
           {!this.state.collapsed ? (
             <>
@@ -78,7 +85,13 @@ class SideNav extends React.Component {
             <></>
           )}
         </ul>
-        <ul className="navbar-nav sidenav-toggler">
+        <ul
+          className={
+            this.props.darkmode
+              ? "navbar-nav sidenav-toggler"
+              : "navbar-nav sidenav-toggler light"
+          }
+        >
           <li className="nav-item">
             <span
               className="nav-link text-center"
@@ -102,7 +115,8 @@ class SideNav extends React.Component {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    channels: state.channels
+    channels: state.channels,
+    darkmode: state.manager.darkmode
   };
 };
 const mapDispatchToProps = dispatch => {

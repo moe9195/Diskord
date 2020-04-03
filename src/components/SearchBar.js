@@ -1,12 +1,17 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { connect } from "react-redux";
 
-const SearchBar = ({ onChange }) => (
+const SearchBar = ({ onChange, darkmode }) => (
   <div className="form-group searchbar">
     <div className="input-group-append">
       <input
-        className="form-control search-box-borders"
+        className={
+          darkmode
+            ? "form-control search-box-borders"
+            : "form-control search-box-borders light"
+        }
         type="text"
         onChange={event => onChange(event.target.value)}
       />
@@ -15,7 +20,11 @@ const SearchBar = ({ onChange }) => (
           type="submit"
           data-toggle="false"
           value="message"
-          className="btn btn-primary btn-static "
+          className={
+            darkmode
+              ? "btn btn-primary btn-static"
+              : "btn btn-primary btn-static light"
+          }
         >
           <FontAwesomeIcon icon={faSearch} />
         </button>
@@ -24,4 +33,10 @@ const SearchBar = ({ onChange }) => (
   </div>
 );
 
-export default SearchBar;
+const mapStateToProps = state => {
+  return {
+    darkmode: state.manager.darkmode
+  };
+};
+
+export default connect(mapStateToProps)(SearchBar);
