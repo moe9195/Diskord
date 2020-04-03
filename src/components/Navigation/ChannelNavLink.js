@@ -25,7 +25,7 @@ class ChannelNavLink extends Component {
           className="nav-item"
           data-toggle="tooltip"
           data-placement="right"
-          title={this.props.channel.name}
+          title={`Name: ${this.props.channel.name}\nOwner: ${this.props.channel.owner}`}
           style={
             this.props.currentChannel === this.props.channel
               ? { background: "#2c2f33" }

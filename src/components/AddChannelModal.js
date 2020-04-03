@@ -55,21 +55,37 @@ class AddChannelModal extends Component {
                 className="channel-img"
               />
               <text style={{ verticalAlign: "middle", padding: "10px" }}>
-                {/* Add Channel */}
+                Add Channel
               </text>
             </span>
           </div>
         ) : (
           <Link className="nav-link heading" to="/login">
-            <span class="fa-layers fa-fw">
-              <FontAwesomeIcon
-                className="font-awesome-plus-circle"
-                icon={faPlusCircle}
-              />
-            </span>
-            <text style={{ verticalAlign: "top", padding: "10px" }}>
-              {/* Add Channel */}
-            </text>
+            <div
+              style={{
+                borderBottomStyle: "solid",
+                borderBottomWidth: "thin",
+                borderBottomColor: "#2c2f33"
+              }}
+            >
+              <span className="nav-link" style={{ paddingBottom: "20px" }}>
+                <ReactImageFallback
+                  src={plusIcon}
+                  style={{
+                    width: "40px",
+                    height: "40px",
+                    overflow: "hidden"
+                  }}
+                  fallbackImage="https://raw.githubusercontent.com/moe9195/Chatr2.0-UI/master/src/assets/plusIcon.png"
+                  initialImage="loader.gif"
+                  alt="plusIcon"
+                  className="channel-img"
+                />
+                <text style={{ verticalAlign: "middle", padding: "10px" }}>
+                  Add Channel
+                </text>
+              </span>
+            </div>
           </Link>
         )}
         <div>
