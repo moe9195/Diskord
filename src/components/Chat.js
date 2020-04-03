@@ -72,11 +72,35 @@ class Chat extends Component {
   checkImageURL(url) {
     return url.match(/.(jpeg|jpg|gif|png)$/) != null;
   }
+
+  dateToWeekday = (year, month, day) => {
+    let y = parseInt(year),
+      m = parseInt(month),
+      d = parseInt(day);
+    let days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ];
+    d = new Date(y, --m, d);
+    return d && days[d.getDay()];
+  };
+
   render() {
     if (!this.props.user) {
       return <Redirect to="/welcome" />;
     }
     const messagesCards = this.props.messages.map(message => {
+      const date = message.timestamp;
+      let year = date.substring(0, 4);
+      let month = date.substring(5, 7);
+      let day = date.substring(8, 10);
+
+      let weekDay = this.dateToWeekday(year, month, day);
       if (this.validURL(message.message)) {
         if (this.checkImageURL(message.message)) {
           return (
@@ -115,13 +139,26 @@ class Chat extends Component {
                   src={`${message.message}`}
                   alt="image"
                 />
+                <br></br>{" "}
+                <div
+                  style={{
+                    fontSize: "10px",
+                    display: "inline",
+                    opacity: "0.5",
+                    align: "right"
+                  }}
+                >
+                  {`${weekDay} ${date.substring(11, 16)}`}
+                </div>
               </div>
+
               <br />
               <br />
             </div>
           );
         }
       }
+
       return this.props.user.username !== message.username ? (
         <div className="yours messages">
           <div className="message">
@@ -139,7 +176,7 @@ class Chat extends Component {
                 align: "right"
               }}
             >
-              {message.timestamp.substring(11, 16)}
+              {`${weekDay} ${date.substring(11, 16)}`}
             </div>
           </div>
         </div>
@@ -162,7 +199,7 @@ class Chat extends Component {
                   opacity: "0.5"
                 }}
               >
-                {message.timestamp.substring(11, 16)}
+                {`${weekDay} ${date.substring(11, 16)}`}
               </div>
             </div>
           </div>
