@@ -8,3 +8,4 @@ export const CURRENT_CHANNEL = "CURRENT_CHANNEL";
 export const CLEAR_MESSAGES = "CLEAR_MESSAGES";
 export const LOADING = "LOADING";
 export const COLOR_MODE = "COLOR_MODE";
+export const CORONA = "CORONA";

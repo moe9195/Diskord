@@ -1,10 +1,15 @@
 import React, { Component } from "react";
-import { fetchMessages, postMessage } from "../redux/actions";
+import { fetchMessages, postMessage, fetchCoronaData } from "../redux/actions";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import "emoji-mart/css/emoji-mart.css";
 import ChatBar from "./ChatBar";
 import Loading from "./Loading";
+import countryData from "../countries";
+
+const allCountries = countryData[0];
+const dictionary = countryData[1];
+const countryArray = countryData[2];
 
 class Chat extends Component {
   state = {
@@ -12,11 +17,16 @@ class Chat extends Component {
     channelID: this.props.match.params.channelID,
     refresh: true,
     showEmojis: false,
-    length: null
+    length: null,
+    loading: true,
+    coronaData: false,
+    sumLoading: true,
+    sum: 0,
   };
 
   componentDidMount() {
     let timestamp = "";
+    this.props.fetchCoronaData();
     this.props.fetchMessages(this.state.channelID, timestamp);
     this.interval = setInterval(() => {
       const messages = this.props.messages;
@@ -29,6 +39,14 @@ class Chat extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    if (this.props.corona.result.length > 0 && this.state.loading) {
+      this.setState({ coronaData: this.cleanData(), loading: false });
+    }
+    if (this.state.coronaData && this.state.sumLoading) {
+      let sum = 0;
+      this.state.coronaData.map((country) => (sum += country.confirmed));
+      this.setState({ sum: sum, sumLoading: false });
+    }
     const channelID = this.props.match.params.channelID;
     if (prevProps.match.params.channelID !== channelID) {
       clearInterval(this.interval);
@@ -61,7 +79,18 @@ class Chat extends Component {
     this.setState({ messages: { message: "" } });
   };
 
-  validURL = string => {
+  cleanData = () => {
+    let cleaned = this.props.corona.result.map((country) => {
+      let countryName = Object.keys(country)[0];
+      return {
+        name: dictionary[countryName],
+        confirmed: country[countryName].confirmed,
+      };
+    });
+    return cleaned;
+  };
+
+  validURL = (string) => {
     try {
       new URL(string);
     } catch (_) {
@@ -84,83 +113,113 @@ class Chat extends Component {
       "Wednesday",
       "Thursday",
       "Friday",
-      "Saturday"
+      "Saturday",
     ];
     d = new Date(y, --m, d);
     return d && days[d.getDay()];
   };
-  onSubmit = message => {
+
+  onSubmit = (message) => {
     this.props.postMessage(this.props.match.params.channelID, message);
+    setTimeout(() => this.checkBot(message.message), 500);
   };
+
+  checkBot = (string) => {
+    let l = string.length;
+    if (string.substring(0, 7) === "$corona") {
+      if (string[7] === "-") {
+        let country = string.substring(8, l);
+        if (countryArray.indexOf(country) !== -1) {
+          let found = this.state.coronaData.find(
+            (item) => item.name === country
+          );
+          this.props.postMessage(this.props.match.params.channelID, {
+            message: found.confirmed,
+          });
+        } else {
+          this.props.postMessage(this.props.match.params.channelID, {
+            message: "Enter valid country!",
+          });
+        }
+      } else {
+        this.props.postMessage(this.props.match.params.channelID, {
+          message: this.state.sum,
+        });
+      }
+    }
+    return false;
+  };
+
   render() {
     if (!this.props.user) {
       return <Redirect to="/welcome" />;
     }
-    const messagesCards = this.props.messages.map(message => {
+
+    const messagesCards = this.props.messages.map((message) => {
       const date = message.timestamp;
       let year = date.substring(0, 4);
       let month = date.substring(5, 7);
       let day = date.substring(8, 10);
 
       let weekDay = this.dateToWeekday(year, month, day);
-      if (this.validURL(message.message)) {
-        if (this.checkImageURL(message.message)) {
-          return (
+      if (
+        this.validURL(message.message) &&
+        this.checkImageURL(message.message)
+      ) {
+        return (
+          <div>
             <div>
-              <div>
-                <p className="message">
-                  {" "}
-                  <div
-                    style={{
-                      fontSize: 16,
-                      color: "#7289DA",
-                      padding:
-                        this.props.user.username !== message.username
-                          ? "0px"
-                          : "8px 15px"
-                    }}
-                  >
-                    {this.props.user.username !== message.username
-                      ? `${message.username}:`
-                      : ""}
-                  </div>
-                </p>
-              </div>
-              <br />
-              <div
-                className="img-align"
-                style={{
-                  textAlign:
-                    this.props.user.username === message.username
-                      ? "right"
-                      : "left"
-                }}
-              >
-                <img
-                  style={{ maxWidth: "60vh" }}
-                  src={`${message.message}`}
-                  alt="image"
-                />
-                <br></br>{" "}
+              <p className="message">
+                {" "}
                 <div
                   style={{
-                    fontSize: "10px",
-                    display: "inline",
-                    opacity: "0.5",
-                    align: "right"
+                    fontSize: 16,
+                    color: "#7289DA",
+                    padding:
+                      this.props.user.username !== message.username
+                        ? "0px"
+                        : "8px 15px",
                   }}
                 >
-                  {`${weekDay} ${date.substring(11, 16)}`}
+                  {this.props.user.username !== message.username
+                    ? `${message.username}:`
+                    : ""}
                 </div>
-              </div>
-
-              <br />
-              <br />
+              </p>
             </div>
-          );
-        }
-      }
+            <br />
+            <div
+              className="img-align"
+              style={{
+                textAlign:
+                  this.props.user.username === message.username
+                    ? "right"
+                    : "left",
+              }}
+            >
+              <img
+                style={{ maxWidth: "60vh" }}
+                src={`${message.message}`}
+                alt="image"
+              />
+              <br></br>{" "}
+              <div
+                style={{
+                  fontSize: "10px",
+                  display: "inline",
+                  opacity: "0.5",
+                  align: "right",
+                }}
+              >
+                {`${weekDay} ${date.substring(11, 16)}`}
+              </div>
+            </div>
 
+            <br />
+            <br />
+          </div>
+        );
+      }
       return this.props.user.username !== message.username ? (
         <div className="yours messages">
           <div className={this.props.darkmode ? "message" : "message-light"}>
@@ -179,7 +238,7 @@ class Chat extends Component {
                 fontSize: "10px",
                 display: "inline",
                 opacity: "0.5",
-                align: "right"
+                align: "right",
               }}
             >
               {`${weekDay} ${date.substring(11, 16)}`}
@@ -198,7 +257,7 @@ class Chat extends Component {
               style={{
                 padding: "8px 15px",
                 marginTop: "0px",
-                marginBottom: "0px"
+                marginBottom: "0px",
               }}
             >
               <div style={{ fontSize: 13 }}> {message.message}</div>{" "}
@@ -206,7 +265,7 @@ class Chat extends Component {
                 style={{
                   fontSize: "10px",
                   display: "inline",
-                  opacity: "0.5"
+                  opacity: "0.5",
                 }}
               >
                 {`${weekDay} ${date.substring(11, 16)}`}
@@ -224,7 +283,7 @@ class Chat extends Component {
             <Loading />
             <div
               style={{ float: "left", clear: "both" }}
-              ref={el => {
+              ref={(el) => {
                 this.messagesEnd = el;
               }}
             ></div>
@@ -236,7 +295,7 @@ class Chat extends Component {
               {messagesCards}
               <div
                 style={{ float: "left", clear: "both" }}
-                ref={el => {
+                ref={(el) => {
                   this.messagesEnd = el;
                 }}
               ></div>
@@ -253,20 +312,22 @@ class Chat extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     user: state.user,
     messages: state.messages,
     loading: state.manager.loading,
-    darkmode: state.manager.darkmode
+    darkmode: state.manager.darkmode,
+    corona: state.corona,
   };
 };
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     fetchMessages: (channelID, timestamp) =>
       dispatch(fetchMessages(channelID, timestamp)),
     postMessage: (channelID, message) =>
-      dispatch(postMessage(channelID, message))
+      dispatch(postMessage(channelID, message)),
+    fetchCoronaData: (country) => dispatch(fetchCoronaData(country)),
   };
 };
 
