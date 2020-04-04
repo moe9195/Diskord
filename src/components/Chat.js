@@ -57,7 +57,7 @@ class Chat extends Component {
           timestamp = messages[messages.length - 1].timestamp;
         }
         this.props.fetchMessages(channelID, timestamp);
-      }, 2000);
+      }, 1000);
     }
 
     let len = this.props.messages.length;
@@ -125,10 +125,14 @@ class Chat extends Component {
   };
 
   checkBot = (string) => {
+    if (string[0] !== "$") {
+      return false;
+    }
     let l = string.length;
     if (string.substring(0, 7) === "$corona") {
       if (string[7] === "-") {
         let country = string.substring(8, l);
+        country = country[0].toUpperCase() + country.substr(1).toLowerCase();
         if (countryArray.indexOf(country) !== -1) {
           let found = this.state.coronaData.find(
             (item) => item.name === country
