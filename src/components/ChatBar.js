@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { postMessage, getCurrentChannel } from "../redux/actions";
+import { getCurrentChannel } from "../redux/actions";
 import { connect } from "react-redux";
 import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
@@ -9,23 +9,23 @@ import { faPaperPlane, faGrin } from "@fortawesome/free-solid-svg-icons";
 class ChatBar extends Component {
   state = {
     messages: { message: "" },
-    showEmojis: false
+    showEmojis: false,
   };
 
-  showEmojis = e => {
+  showEmojis = (e) => {
     this.setState(
       {
-        showEmojis: true
+        showEmojis: true,
       },
       () => document.addEventListener("click", this.closeMenu)
     );
   };
 
-  closeMenu = e => {
+  closeMenu = (e) => {
     if (this.emojiPicker !== null && !this.emojiPicker.contains(e.target)) {
       this.setState(
         {
-          showEmojis: false
+          showEmojis: false,
         },
         () => document.removeEventListener("click", this.closeMenu)
       );
@@ -35,22 +35,22 @@ class ChatBar extends Component {
     this.setState({ messages: { message: "" } });
   };
 
-  handleChange = event =>
+  handleChange = (event) =>
     this.setState({
       messages: {
-        message: event.target.value
-      }
+        message: event.target.value,
+      },
     });
 
-  onSubmit = event => {
+  onSubmit = (event) => {
     event.preventDefault();
     this.props.onSubmit(this.state.messages);
     this.clearForm();
   };
-  addEmoji = e => {
+  addEmoji = (e) => {
     let emoji = e.native;
     this.setState({
-      messages: { message: this.state.messages.message + emoji }
+      messages: { message: this.state.messages.message + emoji },
     });
   };
 
@@ -64,7 +64,7 @@ class ChatBar extends Component {
                 {this.state.showEmojis ? (
                   <span
                     style={styles.emojiPicker}
-                    ref={el => (this.emojiPicker = el)}
+                    ref={(el) => (this.emojiPicker = el)}
                   >
                     <Picker
                       onSelect={this.addEmoji}
@@ -124,19 +124,17 @@ class ChatBar extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     messages: state.messages,
     currentChannel: state.manager.currentChannel,
     channels: state.channels,
-    darkmode: state.manager.darkmode
+    darkmode: state.manager.darkmode,
   };
 };
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    postMessage: (channelID, message) =>
-      dispatch(postMessage(channelID, message)),
-    getCurrentChannel: channel => dispatch(getCurrentChannel(channel))
+    getCurrentChannel: (channel) => dispatch(getCurrentChannel(channel)),
   };
 };
 
@@ -146,10 +144,10 @@ const styles = {
   container: {
     padding: 20,
     borderTop: "1px #4C758F solid",
-    marginBottom: 20
+    marginBottom: 20,
   },
   form: {
-    display: "flex"
+    display: "flex",
   },
   input: {
     color: "inherit",
@@ -157,13 +155,13 @@ const styles = {
     outline: "none",
     border: "none",
     flex: 1,
-    fontSize: 16
+    fontSize: 16,
   },
   getEmojiButton: {
     cssFloat: "right",
     border: "none",
     margin: 0,
-    cursor: "pointer"
+    cursor: "pointer",
   },
   emojiPicker: {
     position: "absolute",
@@ -171,6 +169,6 @@ const styles = {
     right: 10,
     cssFloat: "left",
     marginLeft: "200px",
-    color: "black"
-  }
+    color: "black",
+  },
 };

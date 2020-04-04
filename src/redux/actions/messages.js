@@ -2,11 +2,11 @@ import {
   SEND_MESSAGE,
   SET_MESSAGES,
   CLEAR_MESSAGES,
-  LOADING
+  LOADING,
 } from "./actionTypes";
 import instance from "./instance";
 
-export const fetchMessages = (channelID, timeStamp) => async dispatch => {
+export const fetchMessages = (channelID, timeStamp) => async (dispatch) => {
   try {
     const res = await instance.get(
       `channels/${channelID}/?latest=${timeStamp}`
@@ -15,25 +15,20 @@ export const fetchMessages = (channelID, timeStamp) => async dispatch => {
     const messages = res.data;
     dispatch({
       type: LOADING,
-      payload: false
+      payload: false,
     });
     dispatch({
       type: SET_MESSAGES,
-      payload: messages
+      payload: messages,
     });
   } catch (error) {
     console.error(error);
   }
 };
 
-export const postMessage = (channelID, message) => async dispatch => {
+export const postMessage = (channelID, message) => async (dispatch) => {
   try {
     const res = await instance.post(`channels/${channelID}/send/`, message);
-    const newMessage = res.data;
-    dispatch({
-      type: SEND_MESSAGE,
-      payload: newMessage
-    });
   } catch (error) {
     console.error(error);
   }
@@ -43,6 +38,6 @@ export const clearMessages = () => {
   console.log("here");
   return {
     type: CLEAR_MESSAGES,
-    payload: []
+    payload: [],
   };
 };
