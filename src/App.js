@@ -58,10 +58,10 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     user: state.user,
-    darkmode: state.manager.darkmode
+    darkmode: state.manager.darkmode,
   };
 };
 
