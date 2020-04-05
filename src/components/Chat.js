@@ -57,7 +57,7 @@ class Chat extends Component {
           timestamp = messages[messages.length - 1].timestamp;
         }
         this.props.fetchMessages(channelID, timestamp);
-      }, 1000);
+      }, 1500);
     }
 
     let len = this.props.messages.length;
