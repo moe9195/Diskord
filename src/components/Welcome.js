@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { resetErrors } from "../redux/actions";
 
 const Welcome = ({ user, darkmode }) => (
   <header className="masthead d-flex">
