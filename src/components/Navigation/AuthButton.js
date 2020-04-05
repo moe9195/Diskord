@@ -19,8 +19,8 @@ const AuthButton = ({
   darkmode
 }) => {
   const logoutAndClearChannels = () => {
-    // clearChannels();
-    // clearMessages();
+    clearChannels();
+    clearMessages();
     logout();
   };
 
