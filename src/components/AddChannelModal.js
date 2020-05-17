@@ -42,18 +42,6 @@ class AddChannelModal extends Component {
               data-toggle="modal"
               data-target="#staticBackdrop"
             >
-              {/* <ReactImageFallback
-                src={plusIcon}
-                style={{
-                  width: "40px",
-                  height: "40px",
-                  overflow: "hidden"
-                }}
-                fallbackImage="https://raw.githubusercontent.com/moe9195/Chatr2.0-UI/master/src/assets/plusIcon.png"
-                initialImage="loader.gif"
-                alt="plusIcon"
-                className="channel-img"
-              /> */}
               <div className={this.props.darkmode ? "" : "light"}>
                 <FontAwesomeIcon
                   icon={faPlusCircle}
