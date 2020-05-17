@@ -39,7 +39,7 @@ class Chat extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.corona.result.length > 0 && this.state.loading) {
+    if (this.props.corona.result && this.state.loading) {
       this.setState({ coronaData: this.cleanData(), loading: false });
     }
     if (this.state.coronaData && this.state.sumLoading) {

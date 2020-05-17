@@ -4,19 +4,22 @@ import { connect } from "react-redux";
 
 class SuperSecretPage extends Component {
   state = {
-    toggleSecret: false
+    toggleSecret: false,
   };
   toggleSecret = () => {
     this.setState({ toggleSecret: !this.state.toggleSecret });
   };
   render() {
     if (!this.props.user) return <Redirect to="/login" />;
-    var secrets = <h5 onClick={this.toggleSecret}>"secret"</h5>,
-      space = " ";
+    // var secrets = <h5 onClick={this.toggleSecret}>"secret"</h5>,
+    //   space = " ";
     return (
       <div>
         <h1 className="message-title d-flex justify-content-center">
-          Choose a channel to start chatting with your friends**
+          Choose a channel to start chatting
+        </h1>
+        {/* <h1 className="message-title d-flex justify-content-center">
+          Choose a channel
         </h1>
         <h5 className="message-text  d-flex justify-content-center">
           🧂 Try to enjoy 🧂
@@ -38,14 +41,14 @@ class SuperSecretPage extends Component {
         </div>
         <p className="message-title sticky-bottom text-right mt-5">
           **If you have any..
-        </p>
+        </p> */}
       </div>
     );
   }
 }
 
 const mapStateToProps = ({ user }) => ({
-  user
+  user,
 });
 
 export default connect(mapStateToProps)(SuperSecretPage);

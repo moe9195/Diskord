@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlusCircle, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
+import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { postChannel } from "../redux/actions";
 import { Link } from "react-router-dom";
 import ReactImageFallback from "react-image-fallback";
@@ -10,17 +10,17 @@ import plusIcon from "./plusIcon.png";
 class AddChannelModal extends Component {
   state = {
     name: "",
-    image_url: ""
+    image_url: "",
   };
 
-  onTextChange = event =>
+  onTextChange = (event) =>
     this.setState({ [event.target.name]: event.target.value });
 
   clearFields = () => {
     let empty = { name: "", image_url: "" };
     this.setState({ ...empty });
   };
-  onSubmit = event => {
+  onSubmit = (event) => {
     event.preventDefault();
     this.props.postChannel(this.state);
     this.clearFields();
@@ -33,7 +33,7 @@ class AddChannelModal extends Component {
             style={{
               borderBottomStyle: "solid",
               borderBottomWidth: "thin",
-              borderBottomColor: "#2c2f33"
+              borderBottomColor: "#2c2f33",
             }}
           >
             <span
@@ -63,7 +63,7 @@ class AddChannelModal extends Component {
                 <text
                   style={{
                     verticalAlign: "super",
-                    padding: "10px"
+                    padding: "10px",
                   }}
                 >
                   Add Channel
@@ -77,7 +77,7 @@ class AddChannelModal extends Component {
               style={{
                 borderBottomStyle: "solid",
                 borderBottomWidth: "thin",
-                borderBottomColor: "#2c2f33"
+                borderBottomColor: "#2c2f33",
               }}
             >
               <span className="nav-link" style={{ paddingBottom: "20px" }}>
@@ -86,7 +86,7 @@ class AddChannelModal extends Component {
                   style={{
                     width: "40px",
                     height: "40px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   }}
                   fallbackImage="https://raw.githubusercontent.com/moe9195/Chatr2.0-UI/master/src/assets/plusIcon.png"
                   initialImage="loader.gif"
@@ -217,15 +217,15 @@ class AddChannelModal extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     user: state.user,
-    darkmode: state.manager.darkmode
+    darkmode: state.manager.darkmode,
   };
 };
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    postChannel: channel => dispatch(postChannel(channel))
+    postChannel: (channel) => dispatch(postChannel(channel)),
   };
 };
 

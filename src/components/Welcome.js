@@ -7,7 +7,7 @@ const Welcome = ({ user, darkmode }) => (
   <header className="masthead d-flex">
     {user ? <Redirect to="/secret" /> : <></>}
     <div className="container text-center my-auto z-1">
-      <h1 className="mb-1">WELCOME TO CHATR</h1>
+      <h1 className="mb-1">WELCOME TO DISKORD</h1>
       <h3 className="mb-5">
         <em>You're gonna need to login to see the messages</em>
       </h3>
@@ -28,9 +28,9 @@ const Welcome = ({ user, darkmode }) => (
   </header>
 );
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.user,
-  darkmode: state.manager.darkmode
+  darkmode: state.manager.darkmode,
 });
 
 export default connect(mapStateToProps)(Welcome);

@@ -1,5 +1,6 @@
 {
-  "name": "chatr2.0-ui",
+  "homepage": "http://yuribenjamin.github.io/diskord",
+  "name": "Diskord",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,6 +10,7 @@
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
     "emoji-mart": "^3.0.0",
+    "gh-pages": "^2.2.0",
     "jquery": "^3.4.1",
     "jwt-decode": "^2.2.0",
     "popper.js": "^1.15.0",
@@ -24,6 +26,8 @@
     "style-it": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
