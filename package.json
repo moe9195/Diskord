@@ -1,5 +1,5 @@
 {
-  "homepage": "http://yuribenjamin.github.io/diskord",
+  "homepage": "http://moe9195.github.io/diskord",
   "name": "Diskord",
   "version": "0.1.0",
   "private": true,
@@ -26,7 +26,7 @@
     "style-it": "^2.1.4"
   },
   "scripts": {
-    "predeploy": "npm run build",
+    "predeploy": "yarn run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
